@@ -42,31 +42,27 @@ const useBattleLogic = (team1: Pokemon[], team2: Pokemon[], maxSize: 1 | 3): Bat
     const [animations, setAnimations] = useState<Record<string, string>>({});
     const [damageQueue, setDamageQueue] = useState<Record<string, { amount: number; type: DamageType; isCrit?: boolean; timestamp: number }[]>>({});
 
+    // Определяем активные слоты (кто сейчас стоит спереди)
     const activeSlots = useMemo(() => {
         const slots = { p1: 1, p2: 1 };
-        
-        // Находим первого живого бойца в каждой команде
         for (let i = 1; i <= maxSize; i++) {
             if (battleState.fighters[`p1-${i}`]?.currentHP > 0) {
                 slots.p1 = i;
                 break;
             }
         }
-        
         for (let i = 1; i <= maxSize; i++) {
             if (battleState.fighters[`p2-${i}`]?.currentHP > 0) {
                 slots.p2 = i;
                 break;
             }
         }
-        
         return slots;
     }, [battleState.fighters, maxSize]);
 
     const checkWin = useCallback((fighters: Record<string, BattleFighter>): 1 | 2 | null => {
         const team1Alive = Object.keys(fighters).some(k => k.startsWith('p1') && fighters[k].currentHP > 0);
         const team2Alive = Object.keys(fighters).some(k => k.startsWith('p2') && fighters[k].currentHP > 0);
-
         if (!team1Alive) return 2;
         if (!team2Alive) return 1;
         return null;
@@ -74,7 +70,6 @@ const useBattleLogic = (team1: Pokemon[], team2: Pokemon[], maxSize: 1 | 3): Bat
 
     const turnQueueVisual = useMemo(() => {
         if (!turnQueue.length) return [];
-        
         const activeQueue = turnQueue.filter(key => battleState.fighters[key]?.currentHP > 0);
         
         let currentIndexInActive = activeQueue.indexOf(turnQueue[currentTurnIndex]);
@@ -98,10 +93,12 @@ const useBattleLogic = (team1: Pokemon[], team2: Pokemon[], maxSize: 1 | 3): Bat
 
     const runBattleTurn = useCallback(() => {
         setBattleState(prev => {
-            let newFighters = { ...prev.fighters };
-            let log = [...prev.log];
+            const newFighters = { ...prev.fighters };
+            const log = [...prev.log];
             
             const currentFighterKey = turnQueue[currentTurnIndex];
+            
+            // Если бойца нет или он мертв — переход хода
             if (!currentFighterKey || newFighters[currentFighterKey].currentHP <= 0) {
                 const nextQueue = initializeTurnQueue(newFighters);
                 const newIndex = nextQueue.length > 0 ? (currentTurnIndex + 1) % nextQueue.length : 0;
@@ -113,18 +110,17 @@ const useBattleLogic = (team1: Pokemon[], team2: Pokemon[], maxSize: 1 | 3): Bat
             const attacker = newFighters[currentFighterKey];
             const targetTeam = currentFighterKey.startsWith('p1') ? 'p2' : 'p1';
 
-            // Урон от статусов (DoT)
+            // --- 1. Урон от статусов (DoT) ---
             if (attacker.status.burn || attacker.status.poison) {
                 const { damage, log: dotLog } = applyDotDamage(attacker);
                 if (damage > 0) {
                     attacker.currentHP = Math.max(0, attacker.currentHP - damage);
                     if (dotLog) log.unshift(dotLog);
                     
-                    // Добавляем DoT урон в очередь анимации
-                    setDamageQueue(prev => ({
-                        ...prev,
+                    setDamageQueue(prevQ => ({
+                        ...prevQ,
                         [currentFighterKey]: [
-                            ...(prev[currentFighterKey] || []),
+                            ...(prevQ[currentFighterKey] || []),
                             { amount: damage, type: 'dot', timestamp: Date.now() }
                         ]
                     }));
@@ -140,33 +136,34 @@ const useBattleLogic = (team1: Pokemon[], team2: Pokemon[], maxSize: 1 | 3): Bat
                 return { ...prev, fighters: newFighters, log, winner: checkWin(newFighters) };
             }
 
+            // --- 2. Поиск цели ---
             const targetKey = Object.keys(newFighters).find(k => k.startsWith(targetTeam) && newFighters[k].currentHP > 0);
             if (!targetKey) { 
-                return { ...prev, isBattleActive: false, winner: checkWin(newFighters) }; 
+                return { ...prev, isBattleActive: false, winner: checkWin(newFighters) };
             }
             
             const defender = newFighters[targetKey];
             
+            // --- 3. Атака ---
             const { damage, isCrit, logMessage } = calculateDamage(attacker, defender);
-            
             defender.currentHP = Math.max(0, defender.currentHP - damage);
             
             let attackLog = `➡️ ${attacker.name} атакует ${defender.name}. Нанесено ${damage} урона.`;
             if (logMessage) attackLog += ` (${logMessage})`;
             log.unshift(attackLog);
 
-            // Анимация атаки
-            setAnimations(prev => ({
-                ...prev,
+            // Анимации
+            setAnimations(prevAnim => ({
+                ...prevAnim,
                 [currentFighterKey]: `anim-attack-${currentFighterKey.startsWith('p1') ? 'p1' : 'p2'}`,
                 [targetKey]: 'anim-hit'
             }));
 
-            // Добавляем урон в очередь анимации
-            setDamageQueue(prev => ({
-                ...prev,
+            // Цифры урона
+            setDamageQueue(prevQ => ({
+                ...prevQ,
                 [targetKey]: [
-                    ...(prev[targetKey] || []),
+                    ...(prevQ[targetKey] || []),
                     { 
                         amount: damage, 
                         type: isCrit ? 'critical' : 'normal', 
@@ -176,7 +173,7 @@ const useBattleLogic = (team1: Pokemon[], team2: Pokemon[], maxSize: 1 | 3): Bat
                 ]
             }));
 
-            // Попытка наложить статус
+            // --- 4. Наложение статуса ---
             const { status: appliedStatus, text: statusText } = tryApplyStatus(attacker);
             if (appliedStatus && !defender.status[appliedStatus]) {
                 defender.status[appliedStatus] = true;
@@ -187,27 +184,27 @@ const useBattleLogic = (team1: Pokemon[], team2: Pokemon[], maxSize: 1 | 3): Bat
                 log.unshift(`❌ ${defender.name} падает!`);
             }
             
+            // --- 5. Подготовка следующего хода ---
             const nextQueue = initializeTurnQueue(newFighters);
             const newIndex = nextQueue.length > 0 ? (currentTurnIndex + 1) % nextQueue.length : 0;
             
             setCurrentTurnIndex(newIndex);
             setTurnQueue(nextQueue);
-            
-            // Сбрасываем анимации через время
+
+            // Сброс анимации
             setTimeout(() => {
                 setAnimations({});
             }, 800);
-            
+
             return { ...prev, fighters: newFighters, log, winner: checkWin(newFighters) };
         });
     }, [currentTurnIndex, turnQueue, checkWin]);
 
     useEffect(() => {
-        let timer: NodeJS.Timeout | null = null;
+        let timer: ReturnType<typeof setTimeout> | null = null;
         if (battleState.isBattleActive && battleState.winner === null) {
             timer = setTimeout(runBattleTurn, 2000);
         }
-
         return () => {
             if (timer) clearTimeout(timer);
         };
@@ -227,6 +224,7 @@ const useBattleLogic = (team1: Pokemon[], team2: Pokemon[], maxSize: 1 | 3): Bat
             winner: null,
             log: ["БИТВА НАЧАТА! Определена очередность хода по скорости."],
         });
+        setDamageQueue({});
     }, [team1, team2, maxSize]);
 
     const resetBattle = useCallback(() => {

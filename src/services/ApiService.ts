@@ -3,6 +3,20 @@ import type { Pokemon, PokemonStat } from '../types/Pokemon';
 export const BATCH_SIZE = 50;
 export const INITIAL_LOAD_COUNT = 100;
 
+interface PokemonApiResponse {
+    id: number;
+    name: string;
+    types: Pokemon['types'];
+    sprites: {
+        front_default: string | null;
+        back_default: string | null;
+    };
+    stats: PokemonStat[];
+    height: number;
+    weight: number;
+    abilities: Pokemon['abilities'];
+}
+
 const getStatsMap = (stats: PokemonStat[]): Record<string, number> => {
     const statsMap: Record<string, number> = {};
     stats.forEach(stat => {
@@ -11,7 +25,7 @@ const getStatsMap = (stats: PokemonStat[]): Record<string, number> => {
     return statsMap;
 };
 
-const processPokemonData = (pok: any): Pokemon => {
+const processPokemonData = (pok: PokemonApiResponse): Pokemon => {
     const statsMap = getStatsMap(pok.stats);
 
     return {
@@ -20,7 +34,7 @@ const processPokemonData = (pok: any): Pokemon => {
         types: pok.types,
         sprites: {
             front_default: pok.sprites.front_default || '',
-            back_default: pok.sprites.back_default
+            back_default: pok.sprites.back_default || ''
         },
         statsMap: {
             ...statsMap,

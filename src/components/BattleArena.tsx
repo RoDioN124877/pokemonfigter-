@@ -1,9 +1,8 @@
-// src/components/BattleArena.tsx
-
 import React from "react";
 import type { Pokemon } from "../types/Pokemon";
 import useBattleLogic from "../hooks/useBattleLogic";
 import ArenaFighterCard from "./ArenaFighterCard";
+import TurnQueueDisplay from "./TurnQueueDisplay"; // Импорт добавлен
 
 interface BattleArenaProps {
   team1: Pokemon[];
@@ -20,23 +19,25 @@ const BattleArena: React.FC<BattleArenaProps> = ({
 }) => {
   const {
     battleState,
-    activeSlots, // <-- Теперь должно быть доступно из useBattleLogic
+    activeSlots,
+    turnQueueVisual, // Достаем визуальную очередь
     animations,
     damageQueue,
     startBattle,
     resetBattle,
-  } = useBattleLogic(team1, team2, maxSize); // ... остальной код компонента // Рендер команды
+  } = useBattleLogic(team1, team2, maxSize);
 
   const renderTeam = (teamNum: 1 | 2) => {
-    const slots = []; // Генерируем слоты 1..maxSize
+    const slots = [];
     for (let i = 1; i <= maxSize; i++) {
       const key = `p${teamNum}-${i}`;
-      const fighter = battleState.fighters[key]; // Если бойца нет (баг?), пропускаем
+      const fighter = battleState.fighters[key];
 
       if (!fighter) continue;
 
-      // Теперь activeSlots содержит число, что устраняет ошибку сравнения string/number.
-      const isActive = activeSlots[`p${teamNum}`] === i;
+      // Получаем number из activeSlots
+      const currentActiveIndex = teamNum === 1 ? activeSlots.p1 : activeSlots.p2;
+      const isActive = currentActiveIndex === i;
 
       slots.push(
         <ArenaFighterCard
@@ -45,31 +46,36 @@ const BattleArena: React.FC<BattleArenaProps> = ({
           isActive={isActive}
           teamNum={teamNum}
           animClass={animations[key] || ""}
-          damageQueue={damageQueue[key] || []} // <-- damageQueue теперь имеет правильный тип
+          damageQueue={damageQueue[key] || []}
         />
       );
     }
     return slots;
   };
 
-  // ... остальной код компонента без изменений ...
-
   return (
     <div className="battle-arena">
-      {" "}
+      
+      {/* --- ВЕРХНЯЯ ЧАСТЬ: Очередь ходов --- */}
+      <div style={{ position: 'absolute', top: 20, left: 20, zIndex: 100 }}>
+         <TurnQueueDisplay queue={turnQueueVisual} />
+      </div>
+
       <button
         className="exe"
         onClick={goToMenu}
-        style={{ top: "20px", right: "20px" }}
+        style={{ position: 'absolute', top: "20px", right: "20px", zIndex: 101 }}
       >
-     EXIT {" "}
+        EXIT
       </button>
-       {/* --- СЦЕНА БОЯ --- */}{" "}
+
+      {/* --- СЦЕНА БОЯ --- */}
       <div className="battle-scene">
-                        {/* Платформы (декор) */}               {" "}
-        <div className="platform p1"></div>               {" "}
-        <div className="platform p2"></div>               {" "}
-        {/* Команда 1 (слева) */}               {" "}
+        {/* Платформы */}
+        <div className="platform p1"></div>
+        <div className="platform p2"></div>
+
+        {/* Команда 1 */}
         <div
           style={{
             display: "flex",
@@ -77,9 +83,10 @@ const BattleArena: React.FC<BattleArenaProps> = ({
             alignItems: "flex-end",
           }}
         >
-                              {renderTeam(1)}               {" "}
+          {renderTeam(1)}
         </div>
-                        {/* Команда 2 (справа) */}               {" "}
+
+        {/* Команда 2 */}
         <div
           style={{
             display: "flex",
@@ -87,67 +94,53 @@ const BattleArena: React.FC<BattleArenaProps> = ({
             alignItems: "flex-end",
           }}
         >
-                              {renderTeam(2)}               {" "}
+          {renderTeam(2)}
         </div>
-                       {" "}
-        {/* Снаряды (если нужна анимация полета, можно добавить сюда отдельный слой) */}
-                   {" "}
       </div>
-                  {/* --- ПАНЕЛЬ УПРАВЛЕНИЯ --- */}           {" "}
+      
+      {/* --- ПАНЕЛЬ УПРАВЛЕНИЯ --- */}
       <div className="battle-controls">
-                       {" "}
         <button
           className="menu-button"
           style={{ fontSize: "1rem", padding: "10px 20px" }}
           disabled={battleState.isBattleActive || battleState.winner !== null}
           onClick={startBattle}
         >
-                             {" "}
-          {battleState.isBattleActive ? "БОЙ ИДЕТ..." : "НАЧАТЬ БИТВУ"}         
-               {" "}
+          {battleState.isBattleActive ? "БОЙ ИДЕТ..." : "НАЧАТЬ БИТВУ"}
         </button>
-                       {" "}
+        
         <div className="battle-log">
-                             {" "}
           {battleState.log.map((line, idx) => (
             <div key={idx} style={{ opacity: idx === 0 ? 1 : 0.6 }}>
-                                          {line}                       {" "}
+              {line}
             </div>
           ))}
-                         {" "}
         </div>
-                       {" "}
+
         {battleState.winner && (
           <div
             style={{
               position: "absolute",
-              top: "20%",
+              top: "40%", // Чуть опустил
               left: "50%",
               transform: "translate(-50%, -50%)",
-              background: "rgba(0,0,0,0.8)",
-              padding: "20px",
+              background: "rgba(0,0,0,0.9)",
+              padding: "30px",
               borderRadius: "10px",
-              border: "2px solid gold",
+              border: "3px solid gold",
               textAlign: "center",
               zIndex: 999,
             }}
           >
-                                   {" "}
-            <h1 style={{ color: "gold" }}>
-                                         {" "}
-              {battleState.winner === 1 ? "PLAYER 1" : "PLAYER 2"} WINS!        
-                             {" "}
+            <h1 style={{ color: "gold", marginBottom: '20px' }}>
+              {battleState.winner === 1 ? "PLAYER 1" : "PLAYER 2"} WINS!
             </h1>
-                                   {" "}
             <button className="menu-button" onClick={resetBattle}>
-                                          RESTART                        {" "}
+               RESTART
             </button>
-                               {" "}
           </div>
         )}
-                   {" "}
       </div>
-             {" "}
     </div>
   );
 };

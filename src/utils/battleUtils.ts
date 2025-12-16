@@ -1,12 +1,12 @@
-import type { BattleFighter, StatusName } from '../types/Pokemon';
+import type { Pokemon, BattleFighter, StatusName } from '../types/Pokemon';
 
 export const STATUS_EFFECTS: Record<string, StatusName> = {
-    BURN: 'burn', 
-    POISON: 'poison', 
-    CONFUSION: 'confusion', 
-    PARALYSIS: 'paralysis', 
-    SLOW: 'slow', 
-    DRENCHED: 'drenched', 
+    BURN: 'burn',
+    POISON: 'poison',
+    CONFUSION: 'confusion',
+    PARALYSIS: 'paralysis',
+    SLOW: 'slow',
+    DRENCHED: 'drenched',
 };
 
 export const typeChart: Record<string, Record<string, number>> = {
@@ -15,7 +15,7 @@ export const typeChart: Record<string, Record<string, number>> = {
     grass: { water: 2, ground: 2, rock: 2, fire: 0.5, flying: 0.5, grass: 0.5, bug: 0.5 },
     electric: { water: 2, flying: 2, ground: 0, electric: 0.5, grass: 0.5 },
     psychic: { fighting: 2, poison: 2, dark: 0, psychic: 0.5 },
-    normal: {},
+    normal: { rock: 0.5, ghost: 0, steel: 0.5 }, // Добавил normal
     fighting: { normal: 2, rock: 2, steel: 2, flying: 0.5, psychic: 0.5, bug: 0.5 },
     flying: { grass: 2, fighting: 2, bug: 2, electric: 0.5, rock: 0.5, steel: 0.5 },
     poison: { grass: 2, fairy: 2, ground: 0.5, psychic: 0.5, rock: 0.5 },
@@ -46,14 +46,14 @@ export function createBattleFighter(pokemon: Pokemon): BattleFighter {
     };
 }
 
-export function calculateDamage(attacker: BattleFighter, defender: BattleFighter): { 
-    damage: number; 
-    isCrit: boolean; 
-    logMessage: string; 
+export function calculateDamage(attacker: BattleFighter, defender: BattleFighter): {
+    damage: number;
+    isCrit: boolean;
+    logMessage: string;
 } {
     const atk = Math.max(attacker.statsMap.attack, attacker.statsMap['special-attack']);
     const def = Math.max(defender.statsMap.defense, defender.statsMap['special-defense']);
-    
+
     const attType = attacker.pok.types?.[0]?.type.name || 'normal';
     const defType = defender.pok.types?.[0]?.type.name || 'normal';
 
@@ -79,10 +79,10 @@ export function calculateDamage(attacker: BattleFighter, defender: BattleFighter
     if (mult > 1 && !isCrit) logMessage = "Супер эффективно!";
     if (mult < 1 && !isCrit) logMessage = "Не очень эффективно...";
 
-    return { 
-        damage: Math.max(1, totalDamage), 
-        isCrit, 
-        logMessage 
+    return {
+        damage: Math.max(1, totalDamage),
+        isCrit,
+        logMessage
     };
 }
 

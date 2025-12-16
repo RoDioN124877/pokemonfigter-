@@ -1,7 +1,3 @@
-// 💡 Вам нужно добавить 'heal' (и, возможно, 'critical', 'dot') в union-тип DamageType
-// в файле src/types/Pokemon.ts, например:
-// export type DamageType = 'normal' | 'critical' | 'dot' | 'heal';
-
 import React from "react";
 import type { BattleFighter, DamageType } from "../types/Pokemon";
 
@@ -9,7 +5,7 @@ interface Props {
   fighter: BattleFighter;
   isActive: boolean;
   teamNum: 1 | 2;
-  animClass: string; // Проверьте, что в types/Pokemon.ts есть timestamp и isCrit
+  animClass: string;
   damageQueue: {
     amount: number;
     type: DamageType;
@@ -33,44 +29,41 @@ const ArenaFighterCard: React.FC<Props> = ({
   if (isActive) wrapperClass += " active";
   else wrapperClass += " benched";
   if (isFainted) wrapperClass += " fainted";
-
+  
   const hpColor = hpPct < 30 ? "#e74c3c" : hpPct < 60 ? "#f1c40f" : "#2ecc71";
+
   return (
     <div className={wrapperClass}>
-      {/* UI (ХП и Имя) скрываем если мертв */}{" "}
+      {/* UI (ХП и Имя) скрываем если мертв */}
       <div className="battle-hud" style={{ opacity: isFainted ? 0 : 1 }}>
-        {" "}
         <div style={{ fontSize: "0.8rem", fontWeight: "bold" }}>
           {name}
-        </div>{" "}
+        </div>
         <div className="hp-bar-container">
-          {" "}
           <div
             className="hp-bar"
             style={{ width: `${hpPct}%`, background: hpColor }}
-          />{" "}
-        </div>{" "}
+          />
+        </div>
       </div>
-      {/* Картинка */}{" "}
+      {/* Картинка */}
       <img
         src={teamNum === 1 ? imageBack : imageFront}
         className="fighter-img"
         alt={name}
       />
-      {/* Вылетающие цифры */}{" "}
-      {damageQueue.map(
-        (
-          d // Это сравнение теперь работает, если 'heal' добавлен в DamageType
-        ) => (
+      {/* Вылетающие цифры */}
+      {damageQueue.map((d, i) => (
           <div
-            key={d.timestamp}
+            // Добавляем индекс к ключу, чтобы React не ругался при одинаковых таймстампах
+            key={`${d.timestamp}-${i}`}
             className={`damage-number ${d.type} ${d.isCrit ? "crit" : ""}`}
           >
             {d.type === "heal" ? "+" : "-"}
-            {d.amount} {d.isCrit && "💥"}{" "}
+            {d.amount} {d.isCrit && "💥"}
           </div>
         )
-      )}{" "}
+      )}
     </div>
   );
 };

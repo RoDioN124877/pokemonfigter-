@@ -41,9 +41,10 @@ export interface Pokemon {
     }[];
 }
 
+// ✅ ИСПРАВЛЕНО: Добавлены heal и dot
 export type DamageType = 'normal' | 'critical' | 'dot' | 'heal';
 
-export type StatusName = "burn" | "poison" | "confusion" | "paralysis" | "slow" | "haunted" | "drenched" | "disarmed";
+export type StatusName = "burn" | "poison" | "confusion" | "paralysis" | "slow" | "drenched";
 
 export interface BattleFighter {
     id: number;
