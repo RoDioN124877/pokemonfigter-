@@ -61,8 +61,8 @@ const StoryMap: React.FC<Props> = ({ defeatedIndices, team, money, onSelectOppon
 
     const earnedBadges = [...defeatedIndices]
         .sort((a, b) => a - b)
-        .map(i => OPPONENTS[i].badge)
-        .filter(Boolean);
+        .map(i => ({ badge: OPPONENTS[i].badge, sprite: OPPONENTS[i].badgeSprite, name: OPPONENTS[i].badgeName }))
+        .filter(b => b.badge);
 
     const handleSkipDay = () => {
         const completed = dayStore.skipDay();
@@ -293,7 +293,9 @@ const StoryMap: React.FC<Props> = ({ defeatedIndices, team, money, onSelectOppon
                 <div className="story-badges-row">
                     <span className="story-badges-label">Значки:</span>
                     {earnedBadges.map((b, i) => (
-                        <span key={i} className="story-badge">{b}</span>
+                        <img key={i} src={b.sprite} alt={b.name || b.badge}
+                            title={b.name || undefined}
+                            style={{ width: 24, height: 24, imageRendering: 'pixelated' }} />
                     ))}
                     <span className="story-badges-label" style={{ marginLeft: 8 }}>
                         {defeatedIndices.length}/{OPPONENTS.length}
@@ -342,7 +344,12 @@ const StoryMap: React.FC<Props> = ({ defeatedIndices, team, money, onSelectOppon
                                     <div className="opp-right">
                                         {defeated ? (
                                             <div style={{ display: 'flex', flexDirection: 'column', gap: 4, alignItems: 'flex-end' }}>
-                                                {opp.badge && <span className={`type-badge type-${opp.typeTheme}`} style={{ fontSize: '1.3rem', padding: '4px 8px' }}>{opp.badge}</span>}
+                                                {opp.badge && (
+                                                    <span className={`type-badge type-${opp.typeTheme}`} style={{ padding: '4px 8px', display: 'inline-flex', alignItems: 'center', gap: 4 }}>
+                                                        <img src={opp.badgeSprite} alt={opp.badgeName || opp.badge}
+                                                            style={{ width: 20, height: 20, imageRendering: 'pixelated' }} />
+                                                    </span>
+                                                )}
                                                 <button
                                                     onClick={() => onSelectOpponent(absIdx)}
                                                     style={{ background: '#1e293b', border: '1px solid #334155', borderRadius: 6, color: '#64748b', fontSize: 10, padding: '3px 10px', cursor: 'pointer' }}

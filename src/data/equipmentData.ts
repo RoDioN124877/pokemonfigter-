@@ -22,6 +22,7 @@ export interface EquipDefV2 {
     tier: 'C' | 'B' | 'A' | 'S' | 'SS';
     cost: number;
     icon: string;
+    sprite: string;
     unlockAfterOpp: number;        // first opponent index that unlocks this in shop
     atkMult?: number;
     defMult?: number;
@@ -34,25 +35,52 @@ export interface EquipDefV2 {
     rare?: boolean;                // strange merchant only (won't appear in shop list)
 }
 
-// helper to define an item more compactly
+const ES = (name: string) => `./sprites/items/${name}.png`;
+
+const WEAPON_POOL = [
+    ES('razor-claw'), ES('razor-fang'), ES('sharp-beak'), ES('dragon-fang'),
+    ES('poison-barb'), ES('kings-rock'), ES('thick-club'), ES('scope-lens'),
+    ES('charcoal'), ES('magnet'), ES('twisted-spoon'), ES('spell-tag'),
+    ES('black-belt'), ES('miracle-seed'), ES('mystic-water'), ES('never-melt-ice'),
+    ES('hard-stone'), ES('soft-sand'), ES('muscle-band'), ES('choice-band'),
+];
+const ARMOR_POOL = [
+    ES('metal-coat'), ES('rocky-helmet'), ES('assault-vest'), ES('leftovers'),
+    ES('eviolite'), ES('focus-sash'), ES('focus-band'), ES('shell-bell'),
+    ES('silk-scarf'), ES('weakness-policy'), ES('wise-glasses'), ES('choice-specs'),
+    ES('light-ball'), ES('power-bracer'), ES('power-belt'), ES('power-weight'),
+];
+const ACC_POOL = [
+    ES('amulet-coin'), ES('lucky-egg'), ES('soothe-bell'), ES('quick-claw'),
+    ES('bright-powder'), ES('smoke-ball'), ES('wide-lens'), ES('zoom-lens'),
+    ES('grip-claw'), ES('destiny-knot'), ES('red-card'), ES('ring-target'),
+    ES('expert-belt'), ES('choice-scarf'), ES('life-orb'), ES('macho-brace'),
+    ES('power-lens'), ES('power-band'), ES('power-anklet'),
+];
+
+let _wi = 0, _ai = 0, _aci = 0;
+const nextW = () => WEAPON_POOL[_wi++ % WEAPON_POOL.length];
+const nextA = () => ARMOR_POOL[_ai++ % ARMOR_POOL.length];
+const nextAc = () => ACC_POOL[_aci++ % ACC_POOL.length];
+
 const w = (
     unlockAfterOpp: number,
     tier: EquipDefV2['tier'],
     id: string, icon: string, name: string, desc: string, cost: number,
     extras: Partial<EquipDefV2>,
-): EquipDefV2 => ({ slot: 'weapon', id, icon, name, desc, tier, cost, unlockAfterOpp, ...extras });
+): EquipDefV2 => ({ slot: 'weapon', id, icon, sprite: nextW(), name, desc, tier, cost, unlockAfterOpp, ...extras });
 const a = (
     unlockAfterOpp: number,
     tier: EquipDefV2['tier'],
     id: string, icon: string, name: string, desc: string, cost: number,
     extras: Partial<EquipDefV2>,
-): EquipDefV2 => ({ slot: 'armor', id, icon, name, desc, tier, cost, unlockAfterOpp, ...extras });
+): EquipDefV2 => ({ slot: 'armor', id, icon, sprite: nextA(), name, desc, tier, cost, unlockAfterOpp, ...extras });
 const ac = (
     unlockAfterOpp: number,
     tier: EquipDefV2['tier'],
     id: string, icon: string, name: string, desc: string, cost: number,
     extras: Partial<EquipDefV2>,
-): EquipDefV2 => ({ slot: 'accessory', id, icon, name, desc, tier, cost, unlockAfterOpp, ...extras });
+): EquipDefV2 => ({ slot: 'accessory', id, icon, sprite: nextAc(), name, desc, tier, cost, unlockAfterOpp, ...extras });
 
 // ─── ACT I (opponents 0..7) ────────────────────────────────────────
 export const EQUIPMENT_V2: EquipDefV2[] = [

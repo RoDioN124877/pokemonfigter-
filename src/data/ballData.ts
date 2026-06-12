@@ -5,27 +5,34 @@ export interface BallDef {
     id: BallId;
     name: string;
     icon: string;
+    sprite: string;
     cost: number;
     baseRate: number;     // base catch chance for equal-level pokemon
     desc: string;
     unlockAfterOpp: number;
 }
 
+const BALL_SPRITE = (name: string) => `./sprites/balls/${name}.png`;
+
 export const BALLS: BallDef[] = [
     {
-        id: 'pokeball', name: 'Покебол', icon: '🔴', cost: 600, baseRate: 0.35,
+        id: 'pokeball', name: 'Покебол', icon: '🔴', sprite: BALL_SPRITE('poke-ball'),
+        cost: 600, baseRate: 0.35,
         desc: '35% базово (зависит от разницы уровней)', unlockAfterOpp: 0,
     },
     {
-        id: 'great-ball', name: 'Грейтбол', icon: '🔵', cost: 1500, baseRate: 0.60,
+        id: 'great-ball', name: 'Грейтбол', icon: '🔵', sprite: BALL_SPRITE('great-ball'),
+        cost: 1500, baseRate: 0.60,
         desc: '60% базово, лучшая ловля сильных покемонов', unlockAfterOpp: 3,
     },
     {
-        id: 'ultra-ball', name: 'Ультрабол', icon: '⚫', cost: 3500, baseRate: 0.85,
+        id: 'ultra-ball', name: 'Ультрабол', icon: '⚫', sprite: BALL_SPRITE('ultra-ball'),
+        cost: 3500, baseRate: 0.85,
         desc: '85% базово, надёжный шар для редких', unlockAfterOpp: 8,
     },
     {
-        id: 'master-ball', name: 'Мастербол', icon: '🟣', cost: 25000, baseRate: 1.0,
+        id: 'master-ball', name: 'Мастербол', icon: '🟣', sprite: BALL_SPRITE('master-ball'),
+        cost: 25000, baseRate: 1.0,
         desc: 'Гарантированная поимка (даже легендарных)', unlockAfterOpp: 14,
     },
 ];

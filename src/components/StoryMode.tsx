@@ -147,7 +147,8 @@ const VictoryScreen: React.FC<{
 
             {opponent.badge && (
                 <div className="result-badge-wrap">
-                    <span className="result-badge-emoji">{opponent.badge}</span>
+                    <img src={opponent.badgeSprite} alt={opponent.badgeName || opponent.badge}
+                        style={{ width: 48, height: 48, imageRendering: 'pixelated' }} />
                     {opponent.badgeName && <span className="result-badge-name">{opponent.badgeName}</span>}
                 </div>
             )}
@@ -172,7 +173,10 @@ const VictoryScreen: React.FC<{
 
                 {canCatch && !pendingCatchTarget && (
                     <div className="victory-catch-section">
-                        <div className="victory-catch-title">🔴 Захватить покемона?</div>
+                        <div className="victory-catch-title" style={{ display: 'flex', alignItems: 'center', gap: 6, justifyContent: 'center' }}>
+                            <img src="./sprites/balls/poke-ball.png" alt="" style={{ width: 22, height: 22, imageRendering: 'pixelated' }} />
+                            Захватить покемона?
+                        </div>
                         <div className="victory-catch-options">
                             {opponentTeam.map(pok => (
                                 <button
@@ -206,7 +210,7 @@ const VictoryScreen: React.FC<{
                                 let mult = delta <= 0 ? 1 : delta <= 5 ? 1 - delta * 0.1 : delta <= 10 ? 0.5 - (delta - 5) * 0.07 : 0.15;
                                 if (ballId === 'master-ball') mult = 1;
                                 const chance = Math.max(0.05, Math.min(1, baseRate * mult));
-                                const icon = ballId === 'pokeball' ? '🔴' : ballId === 'great-ball' ? '🔵' : ballId === 'ultra-ball' ? '⚫' : '🟣';
+                                const sprite = ballId === 'pokeball' ? './sprites/balls/poke-ball.png' : `./sprites/balls/${ballId}.png`;
                                 return (
                                     <button key={ballId} disabled={qty === 0} onClick={() => handleCatchWithBall(pendingCatchTarget, ballId)} style={{
                                         background: qty > 0 ? '#0f172a' : '#1e293b',
@@ -214,7 +218,7 @@ const VictoryScreen: React.FC<{
                                         borderRadius: 8, padding: '8px 12px', cursor: qty > 0 ? 'pointer' : 'not-allowed',
                                         color: '#e2e8f0', opacity: qty > 0 ? 1 : 0.5, minWidth: 70,
                                     }}>
-                                        <div style={{ fontSize: 22 }}>{icon}</div>
+                                        <div><img src={sprite} alt={ballId} style={{ width: 28, height: 28, imageRendering: 'pixelated' }} /></div>
                                         <div style={{ fontSize: 9, color: '#94a3b8' }}>×{qty}</div>
                                         <div style={{ fontSize: 10, color: '#4ade80', fontWeight: 700 }}>{Math.round(chance * 100)}%</div>
                                     </button>
@@ -348,7 +352,9 @@ const ChampionScreen: React.FC<{ isFinale: boolean; onMenu: () => void; onContin
         )}
         <div className="champion-badges">
             {OPPONENTS.map(o => o.badge && (
-                <span key={o.id} className="champ-badge">{o.badge}</span>
+                <img key={o.id} src={o.badgeSprite} alt={o.badgeName || o.badge}
+                    className="champ-badge"
+                    style={{ width: 28, height: 28, imageRendering: 'pixelated' }} />
             ))}
         </div>
         <div style={{ display: 'flex', gap: 12, justifyContent: 'center' }}>

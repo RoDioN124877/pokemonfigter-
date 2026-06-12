@@ -47,7 +47,9 @@ export interface OwnedPokemon {
 export type ItemId =
     | 'x-attack' | 'x-defense' | 'x-speed' | 'elixir'
     | BallId
-    | 'pokefood' | 'super-food' | 'rare-treat';
+    | 'oran-berry' | 'berry-juice' | 'pokefood' | 'sitrus-berry' | 'moomoo-milk'
+    | 'super-food' | 'lava-cookie' | 'big-malasada' | 'rare-treat' | 'rare-candy'
+    | 'pp-max' | 'bottle-cap' | 'gold-bottle-cap' | 'sacred-ash' | 'ability-capsule';
 
 export interface BagItem { id: ItemId; qty: number; }
 export interface EquipBagItem { id: string; qty: number; }
@@ -76,21 +78,38 @@ export interface ItemDef {
     desc: string;
     cost: number;
     icon: string;
+    sprite: string;
     xpGain?: number;
     category: 'buff' | 'food' | 'catch';
 }
 
+const ITEM_SPRITE = (name: string) => `./sprites/items/${name}.png`;
+
 export const ITEM_DEFS: ItemDef[] = [
-    { id: 'x-attack',   category: 'buff',  name: 'Икс-Атака',       desc: '+40% Атака команды в бою',          cost: 800,  icon: '⚔️' },
-    { id: 'x-defense',  category: 'buff',  name: 'Икс-Защита',      desc: '+40% Защита команды в бою',          cost: 800,  icon: '🛡️' },
-    { id: 'x-speed',    category: 'buff',  name: 'Икс-Скорость',    desc: '+35% Скорость команды в бою',        cost: 600,  icon: '💨' },
-    { id: 'elixir',     category: 'buff',  name: 'Эликсир',         desc: '+25% Атака и Защита команды в бою',  cost: 1200, icon: '🔮' },
-    { id: 'pokefood',   category: 'food',  name: 'Покекорм',        desc: '+200 EXP одному покемону',           cost: 200,  icon: '🍖', xpGain: 200  },
-    { id: 'super-food', category: 'food',  name: 'Суперкорм',       desc: '+650 EXP одному покемону',           cost: 500,  icon: '🥩', xpGain: 650  },
-    { id: 'rare-treat', category: 'food',  name: 'Редкое угощение', desc: '+2200 EXP одному покемону',          cost: 1400, icon: '⭐', xpGain: 2200 },
+    { id: 'x-attack',   category: 'buff',  name: 'Икс-Атака',       desc: '+40% Атака команды в бою',          cost: 800,  icon: '⚔️', sprite: ITEM_SPRITE('x-attack') },
+    { id: 'x-defense',  category: 'buff',  name: 'Икс-Защита',      desc: '+40% Защита команды в бою',          cost: 800,  icon: '🛡️', sprite: ITEM_SPRITE('x-defense') },
+    { id: 'x-speed',    category: 'buff',  name: 'Икс-Скорость',    desc: '+35% Скорость команды в бою',        cost: 600,  icon: '💨', sprite: ITEM_SPRITE('x-speed') },
+    { id: 'elixir',     category: 'buff',  name: 'Эликсир',         desc: '+25% Атака и Защита команды в бою',  cost: 1200, icon: '🔮', sprite: ITEM_SPRITE('elixir') },
+
+    { id: 'oran-berry',   category: 'food', name: 'Оран-ягода',       desc: '+80 EXP — дешёвый перекус',             cost: 80,   icon: '🫐', sprite: ITEM_SPRITE('oran-berry'),   xpGain: 80   },
+    { id: 'berry-juice',  category: 'food', name: 'Ягодный сок',      desc: '+150 EXP — освежающий напиток',          cost: 150,  icon: '🧃', sprite: ITEM_SPRITE('berry-juice'),  xpGain: 150  },
+    { id: 'pokefood',     category: 'food', name: 'Покекорм',         desc: '+250 EXP — стандартный корм',            cost: 250,  icon: '🍖', sprite: ITEM_SPRITE('oran-berry'),   xpGain: 250  },
+    { id: 'sitrus-berry', category: 'food', name: 'Ситрус-ягода',     desc: '+450 EXP — сочная и питательная',        cost: 400,  icon: '🍋', sprite: ITEM_SPRITE('sitrus-berry'), xpGain: 450  },
+    { id: 'moomoo-milk',  category: 'food', name: 'Молоко Мумуу',     desc: '+700 EXP — парное молоко с фермы',       cost: 600,  icon: '🥛', sprite: ITEM_SPRITE('moomoo-milk'),  xpGain: 700  },
+    { id: 'super-food',   category: 'food', name: 'Суперкорм',        desc: '+1000 EXP — усиленный рацион',           cost: 850,  icon: '🥩', sprite: ITEM_SPRITE('protein'),      xpGain: 1000 },
+    { id: 'lava-cookie',  category: 'food', name: 'Лава-печенье',     desc: '+1500 EXP — выпечка из Лавариджа',       cost: 1200, icon: '🍪', sprite: ITEM_SPRITE('lava-cookie'),  xpGain: 1500 },
+    { id: 'big-malasada', category: 'food', name: 'Биг-маласада',     desc: '+2200 EXP — деликатес из Алолы',         cost: 1800, icon: '🍩', sprite: ITEM_SPRITE('big-malasada'), xpGain: 2200 },
+    { id: 'rare-treat',      category: 'food', name: 'Редкое угощение',    desc: '+3500 EXP — лакомство для избранных',          cost: 2800,  icon: '⭐', sprite: ITEM_SPRITE('old-gateau'),       xpGain: 3500  },
+    { id: 'rare-candy',      category: 'food', name: 'Редкая конфета',    desc: '+6000 EXP — мгновенный скачок силы!',          cost: 5000,  icon: '🍬', sprite: ITEM_SPRITE('rare-candy'),       xpGain: 6000  },
+    { id: 'pp-max',          category: 'food', name: 'PP-Макс',           desc: '+10 000 EXP — предел потенциала',              cost: 8000,  icon: '💎', sprite: ITEM_SPRITE('pp-max'),           xpGain: 10000 },
+    { id: 'bottle-cap',      category: 'food', name: 'Крышка-бутылка',    desc: '+18 000 EXP — серебряный стандарт',            cost: 14000, icon: '🥈', sprite: ITEM_SPRITE('bottle-cap'),      xpGain: 18000 },
+    { id: 'gold-bottle-cap', category: 'food', name: 'Золотая крышка',    desc: '+30 000 EXP — абсолютный максимум',            cost: 22000, icon: '🥇', sprite: ITEM_SPRITE('gold-bottle-cap'), xpGain: 30000 },
+    { id: 'sacred-ash',      category: 'food', name: 'Священный пепел',   desc: '+50 000 EXP — дар легендарного Хо-О',          cost: 38000, icon: '🔥', sprite: ITEM_SPRITE('sacred-ash'),      xpGain: 50000 },
+    { id: 'ability-capsule', category: 'food', name: 'Капсула таланта',   desc: '+100 000 EXP — запредельная мощь!',            cost: 75000, icon: '💊', sprite: ITEM_SPRITE('ability-capsule'), xpGain: 100000 },
+
     ...BALLS.map(b => ({
         id: b.id as ItemId, category: 'catch' as const, name: b.name, desc: b.desc,
-        cost: b.cost, icon: b.icon,
+        cost: b.cost, icon: b.icon, sprite: b.sprite,
     })),
 ];
 

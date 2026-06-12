@@ -1,0 +1,2564 @@
+[
+  {
+    "key": "route-1",
+    "name": "Тропа Палет-тауна",
+    "emoji": "🌿",
+    "color": "#22c55e",
+    "desc": "Тихая тропа из Палет-тауна. Слабые покемоны — идеально для начала.",
+    "encounters": [
+      {
+        "id": 6,
+        "chance": 100,
+        "minLevel": 3,
+        "maxLevel": 56
+      },
+      {
+        "id": 16,
+        "chance": 100,
+        "minLevel": 2,
+        "maxLevel": 56
+      },
+      {
+        "id": 17,
+        "chance": 100,
+        "minLevel": 3,
+        "maxLevel": 56
+      },
+      {
+        "id": 18,
+        "chance": 100,
+        "minLevel": 3,
+        "maxLevel": 56
+      },
+      {
+        "id": 19,
+        "chance": 100,
+        "minLevel": 2,
+        "maxLevel": 6
+      },
+      {
+        "id": 43,
+        "chance": 100,
+        "minLevel": 3,
+        "maxLevel": 4
+      },
+      {
+        "id": 69,
+        "chance": 100,
+        "minLevel": 3,
+        "maxLevel": 4
+      },
+      {
+        "id": 144,
+        "chance": 100,
+        "minLevel": 3,
+        "maxLevel": 56
+      },
+      {
+        "id": 145,
+        "chance": 100,
+        "minLevel": 3,
+        "maxLevel": 56
+      },
+      {
+        "id": 146,
+        "chance": 100,
+        "minLevel": 3,
+        "maxLevel": 56
+      },
+      {
+        "id": 149,
+        "chance": 100,
+        "minLevel": 3,
+        "maxLevel": 56
+      },
+      {
+        "id": 163,
+        "chance": 50,
+        "minLevel": 2,
+        "maxLevel": 6
+      },
+      {
+        "id": 161,
+        "chance": 20,
+        "minLevel": 3,
+        "maxLevel": 3
+      },
+      {
+        "id": 261,
+        "chance": 20,
+        "minLevel": 2,
+        "maxLevel": 2
+      },
+      {
+        "id": 165,
+        "chance": 15,
+        "minLevel": 5,
+        "maxLevel": 6
+      },
+      {
+        "id": 167,
+        "chance": 15,
+        "minLevel": 5,
+        "maxLevel": 6
+      },
+      {
+        "id": 204,
+        "chance": 15,
+        "minLevel": 2,
+        "maxLevel": 3
+      },
+      {
+        "id": 265,
+        "chance": 10,
+        "minLevel": 2,
+        "maxLevel": 6
+      },
+      {
+        "id": 311,
+        "chance": 10,
+        "minLevel": 2,
+        "maxLevel": 2
+      },
+      {
+        "id": 312,
+        "chance": 10,
+        "minLevel": 3,
+        "maxLevel": 3
+      },
+      {
+        "id": 403,
+        "chance": 10,
+        "minLevel": 2,
+        "maxLevel": 3
+      },
+      {
+        "id": 20,
+        "chance": 5,
+        "minLevel": 6,
+        "maxLevel": 6
+      },
+      {
+        "id": 162,
+        "chance": 5,
+        "minLevel": 6,
+        "maxLevel": 6
+      }
+    ]
+  },
+  {
+    "key": "route-2",
+    "name": "Лесная дорога",
+    "emoji": "🌳",
+    "color": "#16a34a",
+    "desc": "Лесная дорога к Вирижиан-форесту. Жуки и птицы.",
+    "encounters": [
+      {
+        "id": 6,
+        "chance": 100,
+        "minLevel": 3,
+        "maxLevel": 56
+      },
+      {
+        "id": 10,
+        "chance": 100,
+        "minLevel": 3,
+        "maxLevel": 8
+      },
+      {
+        "id": 13,
+        "chance": 100,
+        "minLevel": 3,
+        "maxLevel": 8
+      },
+      {
+        "id": 16,
+        "chance": 100,
+        "minLevel": 2,
+        "maxLevel": 56
+      },
+      {
+        "id": 17,
+        "chance": 100,
+        "minLevel": 3,
+        "maxLevel": 56
+      },
+      {
+        "id": 18,
+        "chance": 100,
+        "minLevel": 3,
+        "maxLevel": 56
+      },
+      {
+        "id": 19,
+        "chance": 100,
+        "minLevel": 2,
+        "maxLevel": 8
+      },
+      {
+        "id": 43,
+        "chance": 100,
+        "minLevel": 3,
+        "maxLevel": 8
+      },
+      {
+        "id": 69,
+        "chance": 100,
+        "minLevel": 3,
+        "maxLevel": 8
+      },
+      {
+        "id": 144,
+        "chance": 100,
+        "minLevel": 3,
+        "maxLevel": 56
+      },
+      {
+        "id": 145,
+        "chance": 100,
+        "minLevel": 3,
+        "maxLevel": 56
+      },
+      {
+        "id": 146,
+        "chance": 100,
+        "minLevel": 3,
+        "maxLevel": 56
+      },
+      {
+        "id": 149,
+        "chance": 100,
+        "minLevel": 3,
+        "maxLevel": 56
+      },
+      {
+        "id": 122,
+        "chance": 100,
+        "minLevel": 8,
+        "maxLevel": 100
+      },
+      {
+        "id": 163,
+        "chance": 50,
+        "minLevel": 3,
+        "maxLevel": 7
+      },
+      {
+        "id": 165,
+        "chance": 30,
+        "minLevel": 3,
+        "maxLevel": 10
+      },
+      {
+        "id": 167,
+        "chance": 30,
+        "minLevel": 3,
+        "maxLevel": 10
+      },
+      {
+        "id": 11,
+        "chance": 20,
+        "minLevel": 5,
+        "maxLevel": 5
+      },
+      {
+        "id": 14,
+        "chance": 20,
+        "minLevel": 3,
+        "maxLevel": 7
+      },
+      {
+        "id": 204,
+        "chance": 15,
+        "minLevel": 3,
+        "maxLevel": 4
+      },
+      {
+        "id": 12,
+        "chance": 10,
+        "minLevel": 7,
+        "maxLevel": 8
+      },
+      {
+        "id": 15,
+        "chance": 10,
+        "minLevel": 7,
+        "maxLevel": 10
+      },
+      {
+        "id": 29,
+        "chance": 10,
+        "minLevel": 4,
+        "maxLevel": 6
+      },
+      {
+        "id": 32,
+        "chance": 10,
+        "minLevel": 4,
+        "maxLevel": 6
+      },
+      {
+        "id": 164,
+        "chance": 10,
+        "minLevel": 4,
+        "maxLevel": 10
+      },
+      {
+        "id": 265,
+        "chance": 10,
+        "minLevel": 3,
+        "maxLevel": 7
+      },
+      {
+        "id": 311,
+        "chance": 10,
+        "minLevel": 3,
+        "maxLevel": 3
+      },
+      {
+        "id": 312,
+        "chance": 10,
+        "minLevel": 5,
+        "maxLevel": 5
+      },
+      {
+        "id": 403,
+        "chance": 10,
+        "minLevel": 3,
+        "maxLevel": 5
+      },
+      {
+        "id": 166,
+        "chance": 5,
+        "minLevel": 7,
+        "maxLevel": 10
+      },
+      {
+        "id": 168,
+        "chance": 5,
+        "minLevel": 7,
+        "maxLevel": 7
+      },
+      {
+        "id": 25,
+        "chance": 4,
+        "minLevel": 4,
+        "maxLevel": 4
+      }
+    ]
+  },
+  {
+    "key": "viridian-forest",
+    "name": "Вирижиан Форест",
+    "emoji": "🐛",
+    "color": "#65a30d",
+    "desc": "Густой лес полный жуков. Если повезёт — встретишь Пикачу!",
+    "encounters": [
+      {
+        "id": 1,
+        "chance": 100,
+        "minLevel": 3,
+        "maxLevel": 6
+      },
+      {
+        "id": 10,
+        "chance": 100,
+        "minLevel": 3,
+        "maxLevel": 6
+      },
+      {
+        "id": 11,
+        "chance": 100,
+        "minLevel": 3,
+        "maxLevel": 6
+      },
+      {
+        "id": 12,
+        "chance": 100,
+        "minLevel": 3,
+        "maxLevel": 7
+      },
+      {
+        "id": 13,
+        "chance": 100,
+        "minLevel": 3,
+        "maxLevel": 6
+      },
+      {
+        "id": 14,
+        "chance": 100,
+        "minLevel": 3,
+        "maxLevel": 6
+      },
+      {
+        "id": 15,
+        "chance": 100,
+        "minLevel": 3,
+        "maxLevel": 7
+      },
+      {
+        "id": 16,
+        "chance": 100,
+        "minLevel": 3,
+        "maxLevel": 8
+      },
+      {
+        "id": 25,
+        "chance": 100,
+        "minLevel": 3,
+        "maxLevel": 7
+      },
+      {
+        "id": 43,
+        "chance": 100,
+        "minLevel": 3,
+        "maxLevel": 6
+      },
+      {
+        "id": 69,
+        "chance": 100,
+        "minLevel": 3,
+        "maxLevel": 6
+      },
+      {
+        "id": 163,
+        "chance": 50,
+        "minLevel": 3,
+        "maxLevel": 7
+      },
+      {
+        "id": 401,
+        "chance": 20,
+        "minLevel": 3,
+        "maxLevel": 3
+      },
+      {
+        "id": 273,
+        "chance": 15,
+        "minLevel": 3,
+        "maxLevel": 7
+      },
+      {
+        "id": 285,
+        "chance": 15,
+        "minLevel": 3,
+        "maxLevel": 7
+      },
+      {
+        "id": 165,
+        "chance": 10,
+        "minLevel": 3,
+        "maxLevel": 4
+      },
+      {
+        "id": 166,
+        "chance": 10,
+        "minLevel": 5,
+        "maxLevel": 7
+      },
+      {
+        "id": 167,
+        "chance": 10,
+        "minLevel": 3,
+        "maxLevel": 4
+      },
+      {
+        "id": 168,
+        "chance": 10,
+        "minLevel": 5,
+        "maxLevel": 7
+      },
+      {
+        "id": 322,
+        "chance": 10,
+        "minLevel": 5,
+        "maxLevel": 5
+      },
+      {
+        "id": 325,
+        "chance": 10,
+        "minLevel": 3,
+        "maxLevel": 3
+      },
+      {
+        "id": 406,
+        "chance": 10,
+        "minLevel": 3,
+        "maxLevel": 3
+      },
+      {
+        "id": 455,
+        "chance": 10,
+        "minLevel": 5,
+        "maxLevel": 5
+      },
+      {
+        "id": 17,
+        "chance": 5,
+        "minLevel": 7,
+        "maxLevel": 9
+      },
+      {
+        "id": 164,
+        "chance": 5,
+        "minLevel": 5,
+        "maxLevel": 7
+      }
+    ]
+  },
+  {
+    "key": "mt-moon",
+    "name": "Гора Мун",
+    "emoji": "🌙",
+    "color": "#a78bfa",
+    "desc": "Тёмная пещера с редкими Клефейри и опасными Зубатами.",
+    "encounters": [
+      {
+        "id": 35,
+        "chance": 100,
+        "minLevel": 5,
+        "maxLevel": 13
+      },
+      {
+        "id": 41,
+        "chance": 100,
+        "minLevel": 5,
+        "maxLevel": 13
+      },
+      {
+        "id": 46,
+        "chance": 100,
+        "minLevel": 5,
+        "maxLevel": 13
+      },
+      {
+        "id": 74,
+        "chance": 100,
+        "minLevel": 5,
+        "maxLevel": 11
+      },
+      {
+        "id": 95,
+        "chance": 100,
+        "minLevel": 5,
+        "maxLevel": 10
+      },
+      {
+        "id": 113,
+        "chance": 100,
+        "minLevel": 5,
+        "maxLevel": 10
+      },
+      {
+        "id": 36,
+        "chance": 100,
+        "minLevel": 5,
+        "maxLevel": 10
+      },
+      {
+        "id": 60,
+        "chance": 60,
+        "minLevel": 20,
+        "maxLevel": 40
+      },
+      {
+        "id": 129,
+        "chance": 40,
+        "minLevel": 10,
+        "maxLevel": 35
+      },
+      {
+        "id": 27,
+        "chance": 20,
+        "minLevel": 8,
+        "maxLevel": 12
+      },
+      {
+        "id": 296,
+        "chance": 10,
+        "minLevel": 8,
+        "maxLevel": 8
+      },
+      {
+        "id": 359,
+        "chance": 10,
+        "minLevel": 6,
+        "maxLevel": 8
+      },
+      {
+        "id": 433,
+        "chance": 10,
+        "minLevel": 8,
+        "maxLevel": 8
+      },
+      {
+        "id": 436,
+        "chance": 10,
+        "minLevel": 6,
+        "maxLevel": 8
+      },
+      {
+        "id": 28,
+        "chance": 5,
+        "minLevel": 10,
+        "maxLevel": 10
+      }
+    ]
+  },
+  {
+    "key": "route-3",
+    "name": "Горный перевал",
+    "emoji": "🛤️",
+    "color": "#059669",
+    "desc": "Дорога к горе Мун. Тренеры и дикие Спиро.",
+    "encounters": [
+      {
+        "id": 4,
+        "chance": 100,
+        "minLevel": 3,
+        "maxLevel": 8
+      },
+      {
+        "id": 6,
+        "chance": 100,
+        "minLevel": 3,
+        "maxLevel": 56
+      },
+      {
+        "id": 19,
+        "chance": 100,
+        "minLevel": 3,
+        "maxLevel": 12
+      },
+      {
+        "id": 21,
+        "chance": 100,
+        "minLevel": 3,
+        "maxLevel": 56
+      },
+      {
+        "id": 22,
+        "chance": 100,
+        "minLevel": 3,
+        "maxLevel": 56
+      },
+      {
+        "id": 23,
+        "chance": 100,
+        "minLevel": 3,
+        "maxLevel": 8
+      },
+      {
+        "id": 27,
+        "chance": 100,
+        "minLevel": 3,
+        "maxLevel": 10
+      },
+      {
+        "id": 56,
+        "chance": 100,
+        "minLevel": 3,
+        "maxLevel": 9
+      },
+      {
+        "id": 144,
+        "chance": 100,
+        "minLevel": 3,
+        "maxLevel": 56
+      },
+      {
+        "id": 145,
+        "chance": 100,
+        "minLevel": 3,
+        "maxLevel": 56
+      },
+      {
+        "id": 146,
+        "chance": 100,
+        "minLevel": 3,
+        "maxLevel": 56
+      },
+      {
+        "id": 149,
+        "chance": 100,
+        "minLevel": 3,
+        "maxLevel": 56
+      },
+      {
+        "id": 129,
+        "chance": 100,
+        "minLevel": 5,
+        "maxLevel": 5
+      },
+      {
+        "id": 163,
+        "chance": 50,
+        "minLevel": 6,
+        "maxLevel": 10
+      },
+      {
+        "id": 41,
+        "chance": 30,
+        "minLevel": 5,
+        "maxLevel": 6
+      },
+      {
+        "id": 16,
+        "chance": 20,
+        "minLevel": 6,
+        "maxLevel": 8
+      },
+      {
+        "id": 20,
+        "chance": 20,
+        "minLevel": 10,
+        "maxLevel": 10
+      },
+      {
+        "id": 316,
+        "chance": 20,
+        "minLevel": 5,
+        "maxLevel": 5
+      },
+      {
+        "id": 343,
+        "chance": 20,
+        "minLevel": 5,
+        "maxLevel": 5
+      },
+      {
+        "id": 204,
+        "chance": 15,
+        "minLevel": 6,
+        "maxLevel": 7
+      },
+      {
+        "id": 29,
+        "chance": 10,
+        "minLevel": 6,
+        "maxLevel": 7
+      },
+      {
+        "id": 32,
+        "chance": 10,
+        "minLevel": 6,
+        "maxLevel": 7
+      },
+      {
+        "id": 39,
+        "chance": 10,
+        "minLevel": 3,
+        "maxLevel": 7
+      },
+      {
+        "id": 265,
+        "chance": 10,
+        "minLevel": 6,
+        "maxLevel": 10
+      },
+      {
+        "id": 311,
+        "chance": 10,
+        "minLevel": 5,
+        "maxLevel": 5
+      },
+      {
+        "id": 312,
+        "chance": 10,
+        "minLevel": 8,
+        "maxLevel": 8
+      },
+      {
+        "id": 403,
+        "chance": 10,
+        "minLevel": 5,
+        "maxLevel": 8
+      },
+      {
+        "id": 24,
+        "chance": 5,
+        "minLevel": 10,
+        "maxLevel": 10
+      },
+      {
+        "id": 35,
+        "chance": 4,
+        "minLevel": 6,
+        "maxLevel": 6
+      }
+    ]
+  },
+  {
+    "key": "route-4",
+    "name": "Скалистый путь",
+    "emoji": "⛰️",
+    "color": "#0d9488",
+    "desc": "Скалистая дорога после горы Мун. Сандшрю и Экансы.",
+    "encounters": [
+      {
+        "id": 4,
+        "chance": 100,
+        "minLevel": 7,
+        "maxLevel": 12
+      },
+      {
+        "id": 6,
+        "chance": 100,
+        "minLevel": 3,
+        "maxLevel": 56
+      },
+      {
+        "id": 19,
+        "chance": 100,
+        "minLevel": 5,
+        "maxLevel": 12
+      },
+      {
+        "id": 21,
+        "chance": 100,
+        "minLevel": 3,
+        "maxLevel": 56
+      },
+      {
+        "id": 22,
+        "chance": 100,
+        "minLevel": 3,
+        "maxLevel": 56
+      },
+      {
+        "id": 23,
+        "chance": 100,
+        "minLevel": 6,
+        "maxLevel": 12
+      },
+      {
+        "id": 27,
+        "chance": 100,
+        "minLevel": 6,
+        "maxLevel": 12
+      },
+      {
+        "id": 54,
+        "chance": 100,
+        "minLevel": 7,
+        "maxLevel": 35
+      },
+      {
+        "id": 56,
+        "chance": 100,
+        "minLevel": 7,
+        "maxLevel": 12
+      },
+      {
+        "id": 72,
+        "chance": 100,
+        "minLevel": 5,
+        "maxLevel": 40
+      },
+      {
+        "id": 73,
+        "chance": 100,
+        "minLevel": 7,
+        "maxLevel": 12
+      },
+      {
+        "id": 129,
+        "chance": 100,
+        "minLevel": 5,
+        "maxLevel": 40
+      },
+      {
+        "id": 144,
+        "chance": 100,
+        "minLevel": 3,
+        "maxLevel": 56
+      },
+      {
+        "id": 145,
+        "chance": 100,
+        "minLevel": 3,
+        "maxLevel": 56
+      },
+      {
+        "id": 146,
+        "chance": 100,
+        "minLevel": 3,
+        "maxLevel": 56
+      },
+      {
+        "id": 149,
+        "chance": 100,
+        "minLevel": 3,
+        "maxLevel": 56
+      },
+      {
+        "id": 98,
+        "chance": 60,
+        "minLevel": 5,
+        "maxLevel": 35
+      },
+      {
+        "id": 116,
+        "chance": 60,
+        "minLevel": 5,
+        "maxLevel": 35
+      },
+      {
+        "id": 118,
+        "chance": 60,
+        "minLevel": 5,
+        "maxLevel": 40
+      },
+      {
+        "id": 163,
+        "chance": 50,
+        "minLevel": 6,
+        "maxLevel": 10
+      },
+      {
+        "id": 41,
+        "chance": 30,
+        "minLevel": 5,
+        "maxLevel": 6
+      },
+      {
+        "id": 20,
+        "chance": 20,
+        "minLevel": 10,
+        "maxLevel": 10
+      },
+      {
+        "id": 130,
+        "chance": 15,
+        "minLevel": 15,
+        "maxLevel": 25
+      },
+      {
+        "id": 204,
+        "chance": 15,
+        "minLevel": 6,
+        "maxLevel": 7
+      },
+      {
+        "id": 39,
+        "chance": 10,
+        "minLevel": 6,
+        "maxLevel": 6
+      },
+      {
+        "id": 119,
+        "chance": 10,
+        "minLevel": 10,
+        "maxLevel": 40
+      },
+      {
+        "id": 264,
+        "chance": 10,
+        "minLevel": 8,
+        "maxLevel": 8
+      },
+      {
+        "id": 265,
+        "chance": 10,
+        "minLevel": 6,
+        "maxLevel": 10
+      },
+      {
+        "id": 293,
+        "chance": 10,
+        "minLevel": 5,
+        "maxLevel": 5
+      },
+      {
+        "id": 399,
+        "chance": 10,
+        "minLevel": 8,
+        "maxLevel": 8
+      },
+      {
+        "id": 418,
+        "chance": 10,
+        "minLevel": 5,
+        "maxLevel": 5
+      },
+      {
+        "id": 24,
+        "chance": 5,
+        "minLevel": 10,
+        "maxLevel": 10
+      },
+      {
+        "id": 35,
+        "chance": 4,
+        "minLevel": 6,
+        "maxLevel": 6
+      },
+      {
+        "id": 79,
+        "chance": 1,
+        "minLevel": 25,
+        "maxLevel": 35
+      }
+    ]
+  },
+  {
+    "key": "rock-tunnel",
+    "name": "Каменный туннель",
+    "emoji": "🪨",
+    "color": "#78716c",
+    "desc": "Кромешная тьма! Нужна вспышка. Оникс, Геодуд, Мачоп.",
+    "encounters": [
+      {
+        "id": 4,
+        "chance": 100,
+        "minLevel": 18,
+        "maxLevel": 23
+      },
+      {
+        "id": 41,
+        "chance": 100,
+        "minLevel": 8,
+        "maxLevel": 23
+      },
+      {
+        "id": 42,
+        "chance": 100,
+        "minLevel": 15,
+        "maxLevel": 23
+      },
+      {
+        "id": 66,
+        "chance": 100,
+        "minLevel": 12,
+        "maxLevel": 23
+      },
+      {
+        "id": 74,
+        "chance": 100,
+        "minLevel": 5,
+        "maxLevel": 30
+      },
+      {
+        "id": 75,
+        "chance": 100,
+        "minLevel": 18,
+        "maxLevel": 40
+      },
+      {
+        "id": 95,
+        "chance": 100,
+        "minLevel": 13,
+        "maxLevel": 23
+      },
+      {
+        "id": 104,
+        "chance": 100,
+        "minLevel": 10,
+        "maxLevel": 23
+      },
+      {
+        "id": 111,
+        "chance": 100,
+        "minLevel": 18,
+        "maxLevel": 23
+      },
+      {
+        "id": 115,
+        "chance": 100,
+        "minLevel": 14,
+        "maxLevel": 23
+      },
+      {
+        "id": 56,
+        "chance": 10,
+        "minLevel": 16,
+        "maxLevel": 17
+      },
+      {
+        "id": 93,
+        "chance": 10,
+        "minLevel": 15,
+        "maxLevel": 17
+      },
+      {
+        "id": 296,
+        "chance": 10,
+        "minLevel": 12,
+        "maxLevel": 16
+      },
+      {
+        "id": 359,
+        "chance": 10,
+        "minLevel": 10,
+        "maxLevel": 12
+      },
+      {
+        "id": 433,
+        "chance": 10,
+        "minLevel": 12,
+        "maxLevel": 16
+      },
+      {
+        "id": 436,
+        "chance": 10,
+        "minLevel": 10,
+        "maxLevel": 12
+      },
+      {
+        "id": 67,
+        "chance": 5,
+        "minLevel": 14,
+        "maxLevel": 15
+      },
+      {
+        "id": 105,
+        "chance": 5,
+        "minLevel": 12,
+        "maxLevel": 15
+      }
+    ]
+  },
+  {
+    "key": "route-24",
+    "name": "Золотой мост",
+    "emoji": "🌉",
+    "color": "#0ea5e9",
+    "desc": "Знаменитый мост к северу от Серулиан-сити. Разнообразные покемоны.",
+    "encounters": [
+      {
+        "id": 4,
+        "chance": 100,
+        "minLevel": 10,
+        "maxLevel": 14
+      },
+      {
+        "id": 6,
+        "chance": 100,
+        "minLevel": 3,
+        "maxLevel": 56
+      },
+      {
+        "id": 7,
+        "chance": 100,
+        "minLevel": 7,
+        "maxLevel": 12
+      },
+      {
+        "id": 16,
+        "chance": 100,
+        "minLevel": 3,
+        "maxLevel": 56
+      },
+      {
+        "id": 17,
+        "chance": 100,
+        "minLevel": 3,
+        "maxLevel": 56
+      },
+      {
+        "id": 18,
+        "chance": 100,
+        "minLevel": 3,
+        "maxLevel": 56
+      },
+      {
+        "id": 43,
+        "chance": 100,
+        "minLevel": 7,
+        "maxLevel": 14
+      },
+      {
+        "id": 48,
+        "chance": 100,
+        "minLevel": 7,
+        "maxLevel": 16
+      },
+      {
+        "id": 52,
+        "chance": 100,
+        "minLevel": 7,
+        "maxLevel": 12
+      },
+      {
+        "id": 54,
+        "chance": 100,
+        "minLevel": 7,
+        "maxLevel": 35
+      },
+      {
+        "id": 69,
+        "chance": 100,
+        "minLevel": 7,
+        "maxLevel": 14
+      },
+      {
+        "id": 72,
+        "chance": 100,
+        "minLevel": 5,
+        "maxLevel": 40
+      },
+      {
+        "id": 73,
+        "chance": 100,
+        "minLevel": 7,
+        "maxLevel": 12
+      },
+      {
+        "id": 129,
+        "chance": 100,
+        "minLevel": 5,
+        "maxLevel": 40
+      },
+      {
+        "id": 144,
+        "chance": 100,
+        "minLevel": 3,
+        "maxLevel": 56
+      },
+      {
+        "id": 145,
+        "chance": 100,
+        "minLevel": 3,
+        "maxLevel": 56
+      },
+      {
+        "id": 146,
+        "chance": 100,
+        "minLevel": 3,
+        "maxLevel": 56
+      },
+      {
+        "id": 149,
+        "chance": 100,
+        "minLevel": 3,
+        "maxLevel": 56
+      },
+      {
+        "id": 98,
+        "chance": 60,
+        "minLevel": 5,
+        "maxLevel": 35
+      },
+      {
+        "id": 116,
+        "chance": 60,
+        "minLevel": 5,
+        "maxLevel": 35
+      },
+      {
+        "id": 118,
+        "chance": 60,
+        "minLevel": 4,
+        "maxLevel": 40
+      },
+      {
+        "id": 60,
+        "chance": 50,
+        "minLevel": 10,
+        "maxLevel": 10
+      },
+      {
+        "id": 10,
+        "chance": 30,
+        "minLevel": 7,
+        "maxLevel": 10
+      },
+      {
+        "id": 191,
+        "chance": 30,
+        "minLevel": 10,
+        "maxLevel": 12
+      },
+      {
+        "id": 11,
+        "chance": 20,
+        "minLevel": 8,
+        "maxLevel": 12
+      },
+      {
+        "id": 13,
+        "chance": 20,
+        "minLevel": 7,
+        "maxLevel": 7
+      },
+      {
+        "id": 14,
+        "chance": 20,
+        "minLevel": 8,
+        "maxLevel": 8
+      },
+      {
+        "id": 63,
+        "chance": 20,
+        "minLevel": 8,
+        "maxLevel": 12
+      },
+      {
+        "id": 130,
+        "chance": 15,
+        "minLevel": 15,
+        "maxLevel": 25
+      },
+      {
+        "id": 70,
+        "chance": 10,
+        "minLevel": 12,
+        "maxLevel": 14
+      },
+      {
+        "id": 119,
+        "chance": 10,
+        "minLevel": 10,
+        "maxLevel": 40
+      },
+      {
+        "id": 264,
+        "chance": 10,
+        "minLevel": 9,
+        "maxLevel": 9
+      },
+      {
+        "id": 293,
+        "chance": 10,
+        "minLevel": 8,
+        "maxLevel": 10
+      },
+      {
+        "id": 399,
+        "chance": 10,
+        "minLevel": 9,
+        "maxLevel": 9
+      },
+      {
+        "id": 418,
+        "chance": 10,
+        "minLevel": 8,
+        "maxLevel": 10
+      },
+      {
+        "id": 12,
+        "chance": 4,
+        "minLevel": 14,
+        "maxLevel": 14
+      },
+      {
+        "id": 44,
+        "chance": 4,
+        "minLevel": 14,
+        "maxLevel": 14
+      },
+      {
+        "id": 49,
+        "chance": 4,
+        "minLevel": 10,
+        "maxLevel": 14
+      },
+      {
+        "id": 79,
+        "chance": 1,
+        "minLevel": 25,
+        "maxLevel": 35
+      }
+    ]
+  },
+  {
+    "key": "route-25",
+    "name": "Мыс Билла",
+    "emoji": "🏖️",
+    "color": "‌#06b6d4",
+    "desc": "Мыс Билла. Абра, Одиш и другие.",
+    "encounters": [
+      {
+        "id": 6,
+        "chance": 100,
+        "minLevel": 3,
+        "maxLevel": 56
+      },
+      {
+        "id": 7,
+        "chance": 100,
+        "minLevel": 9,
+        "maxLevel": 14
+      },
+      {
+        "id": 16,
+        "chance": 100,
+        "minLevel": 3,
+        "maxLevel": 56
+      },
+      {
+        "id": 17,
+        "chance": 100,
+        "minLevel": 3,
+        "maxLevel": 56
+      },
+      {
+        "id": 18,
+        "chance": 100,
+        "minLevel": 3,
+        "maxLevel": 56
+      },
+      {
+        "id": 43,
+        "chance": 100,
+        "minLevel": 9,
+        "maxLevel": 14
+      },
+      {
+        "id": 48,
+        "chance": 100,
+        "minLevel": 8,
+        "maxLevel": 16
+      },
+      {
+        "id": 52,
+        "chance": 100,
+        "minLevel": 9,
+        "maxLevel": 14
+      },
+      {
+        "id": 54,
+        "chance": 100,
+        "minLevel": 9,
+        "maxLevel": 40
+      },
+      {
+        "id": 60,
+        "chance": 100,
+        "minLevel": 5,
+        "maxLevel": 25
+      },
+      {
+        "id": 61,
+        "chance": 100,
+        "minLevel": 9,
+        "maxLevel": 30
+      },
+      {
+        "id": 69,
+        "chance": 100,
+        "minLevel": 9,
+        "maxLevel": 14
+      },
+      {
+        "id": 129,
+        "chance": 100,
+        "minLevel": 5,
+        "maxLevel": 40
+      },
+      {
+        "id": 144,
+        "chance": 100,
+        "minLevel": 3,
+        "maxLevel": 56
+      },
+      {
+        "id": 145,
+        "chance": 100,
+        "minLevel": 3,
+        "maxLevel": 56
+      },
+      {
+        "id": 146,
+        "chance": 100,
+        "minLevel": 3,
+        "maxLevel": 56
+      },
+      {
+        "id": 149,
+        "chance": 100,
+        "minLevel": 3,
+        "maxLevel": 56
+      },
+      {
+        "id": 245,
+        "chance": 100,
+        "minLevel": 40,
+        "maxLevel": 40
+      },
+      {
+        "id": 79,
+        "chance": 60,
+        "minLevel": 15,
+        "maxLevel": 40
+      },
+      {
+        "id": 118,
+        "chance": 60,
+        "minLevel": 4,
+        "maxLevel": 40
+      },
+      {
+        "id": 163,
+        "chance": 50,
+        "minLevel": 10,
+        "maxLevel": 14
+      },
+      {
+        "id": 415,
+        "chance": 50,
+        "minLevel": 10,
+        "maxLevel": 14
+      },
+      {
+        "id": 98,
+        "chance": 40,
+        "minLevel": 10,
+        "maxLevel": 15
+      },
+      {
+        "id": 10,
+        "chance": 30,
+        "minLevel": 8,
+        "maxLevel": 10
+      },
+      {
+        "id": 11,
+        "chance": 20,
+        "minLevel": 7,
+        "maxLevel": 12
+      },
+      {
+        "id": 13,
+        "chance": 20,
+        "minLevel": 8,
+        "maxLevel": 8
+      },
+      {
+        "id": 14,
+        "chance": 20,
+        "minLevel": 7,
+        "maxLevel": 9
+      },
+      {
+        "id": 49,
+        "chance": 20,
+        "minLevel": 8,
+        "maxLevel": 10
+      },
+      {
+        "id": 99,
+        "chance": 20,
+        "minLevel": 15,
+        "maxLevel": 25
+      },
+      {
+        "id": 427,
+        "chance": 20,
+        "minLevel": 8,
+        "maxLevel": 10
+      },
+      {
+        "id": 130,
+        "chance": 15,
+        "minLevel": 15,
+        "maxLevel": 25
+      },
+      {
+        "id": 204,
+        "chance": 15,
+        "minLevel": 10,
+        "maxLevel": 11
+      },
+      {
+        "id": 287,
+        "chance": 15,
+        "minLevel": 10,
+        "maxLevel": 18
+      },
+      {
+        "id": 63,
+        "chance": 10,
+        "minLevel": 9,
+        "maxLevel": 13
+      },
+      {
+        "id": 119,
+        "chance": 10,
+        "minLevel": 10,
+        "maxLevel": 40
+      },
+      {
+        "id": 164,
+        "chance": 10,
+        "minLevel": 12,
+        "maxLevel": 14
+      },
+      {
+        "id": 264,
+        "chance": 10,
+        "minLevel": 8,
+        "maxLevel": 8
+      },
+      {
+        "id": 293,
+        "chance": 10,
+        "minLevel": 8,
+        "maxLevel": 10
+      },
+      {
+        "id": 399,
+        "chance": 10,
+        "minLevel": 8,
+        "maxLevel": 8
+      },
+      {
+        "id": 418,
+        "chance": 10,
+        "minLevel": 8,
+        "maxLevel": 10
+      },
+      {
+        "id": 70,
+        "chance": 5,
+        "minLevel": 10,
+        "maxLevel": 14
+      },
+      {
+        "id": 12,
+        "chance": 4,
+        "minLevel": 14,
+        "maxLevel": 14
+      }
+    ]
+  },
+  {
+    "key": "pokemon-tower",
+    "name": "Башня покемонов",
+    "emoji": "👻",
+    "color": "#7c3aed",
+    "desc": "Жуткая башня в Лавендер-тауне. Гастли и Хонтеры бродят этажами.",
+    "encounters": [
+      {
+        "id": 41,
+        "chance": 100,
+        "minLevel": 27,
+        "maxLevel": 32
+      },
+      {
+        "id": 42,
+        "chance": 100,
+        "minLevel": 27,
+        "maxLevel": 32
+      },
+      {
+        "id": 92,
+        "chance": 100,
+        "minLevel": 13,
+        "maxLevel": 32
+      },
+      {
+        "id": 93,
+        "chance": 100,
+        "minLevel": 20,
+        "maxLevel": 32
+      },
+      {
+        "id": 104,
+        "chance": 100,
+        "minLevel": 15,
+        "maxLevel": 32
+      },
+      {
+        "id": 113,
+        "chance": 100,
+        "minLevel": 27,
+        "maxLevel": 32
+      }
+    ]
+  },
+  {
+    "key": "safari-zone",
+    "name": "Сафари-зона",
+    "emoji": "🦏",
+    "color": "#d97706",
+    "desc": "Редкие покемоны! Тауросы, Кангасханы, Скайтеры и Пинсиры.",
+    "encounters": [
+      {
+        "id": 129,
+        "chance": 100,
+        "minLevel": 5,
+        "maxLevel": 15
+      },
+      {
+        "id": 54,
+        "chance": 60,
+        "minLevel": 15,
+        "maxLevel": 40
+      },
+      {
+        "id": 79,
+        "chance": 60,
+        "minLevel": 15,
+        "maxLevel": 40
+      },
+      {
+        "id": 118,
+        "chance": 60,
+        "minLevel": 5,
+        "maxLevel": 25
+      },
+      {
+        "id": 60,
+        "chance": 50,
+        "minLevel": 5,
+        "maxLevel": 15
+      },
+      {
+        "id": 119,
+        "chance": 40,
+        "minLevel": 20,
+        "maxLevel": 30
+      },
+      {
+        "id": 147,
+        "chance": 25,
+        "minLevel": 10,
+        "maxLevel": 25
+      },
+      {
+        "id": 29,
+        "chance": 20,
+        "minLevel": 14,
+        "maxLevel": 36
+      },
+      {
+        "id": 32,
+        "chance": 20,
+        "minLevel": 14,
+        "maxLevel": 36
+      },
+      {
+        "id": 111,
+        "chance": 20,
+        "minLevel": 20,
+        "maxLevel": 26
+      },
+      {
+        "id": 84,
+        "chance": 20,
+        "minLevel": 26,
+        "maxLevel": 26
+      },
+      {
+        "id": 98,
+        "chance": 17,
+        "minLevel": 15,
+        "maxLevel": 15
+      },
+      {
+        "id": 46,
+        "chance": 15,
+        "minLevel": 22,
+        "maxLevel": 27
+      },
+      {
+        "id": 48,
+        "chance": 15,
+        "minLevel": 22,
+        "maxLevel": 23
+      },
+      {
+        "id": 102,
+        "chance": 15,
+        "minLevel": 20,
+        "maxLevel": 27
+      },
+      {
+        "id": 30,
+        "chance": 10,
+        "minLevel": 23,
+        "maxLevel": 33
+      },
+      {
+        "id": 33,
+        "chance": 10,
+        "minLevel": 23,
+        "maxLevel": 33
+      },
+      {
+        "id": 47,
+        "chance": 10,
+        "minLevel": 25,
+        "maxLevel": 32
+      },
+      {
+        "id": 148,
+        "chance": 10,
+        "minLevel": 15,
+        "maxLevel": 35
+      },
+      {
+        "id": 104,
+        "chance": 10,
+        "minLevel": 16,
+        "maxLevel": 19
+      },
+      {
+        "id": 115,
+        "chance": 10,
+        "minLevel": 25,
+        "maxLevel": 33
+      },
+      {
+        "id": 128,
+        "chance": 10,
+        "minLevel": 21,
+        "maxLevel": 28
+      },
+      {
+        "id": 105,
+        "chance": 5,
+        "minLevel": 24,
+        "maxLevel": 24
+      },
+      {
+        "id": 49,
+        "chance": 5,
+        "minLevel": 31,
+        "maxLevel": 32
+      },
+      {
+        "id": 113,
+        "chance": 4,
+        "minLevel": 7,
+        "maxLevel": 26
+      },
+      {
+        "id": 114,
+        "chance": 4,
+        "minLevel": 22,
+        "maxLevel": 27
+      },
+      {
+        "id": 123,
+        "chance": 4,
+        "minLevel": 15,
+        "maxLevel": 28
+      },
+      {
+        "id": 127,
+        "chance": 4,
+        "minLevel": 15,
+        "maxLevel": 28
+      }
+    ]
+  },
+  {
+    "key": "power-plant",
+    "name": "Электростанция",
+    "emoji": "⚡",
+    "color": "#eab308",
+    "desc": "Заброшенная ЭС. Вольторбы, Магнемайты и легендарный Запдос.",
+    "encounters": [
+      {
+        "id": 81,
+        "chance": 100,
+        "minLevel": 21,
+        "maxLevel": 42
+      },
+      {
+        "id": 82,
+        "chance": 100,
+        "minLevel": 16,
+        "maxLevel": 100
+      },
+      {
+        "id": 88,
+        "chance": 100,
+        "minLevel": 33,
+        "maxLevel": 42
+      },
+      {
+        "id": 89,
+        "chance": 100,
+        "minLevel": 33,
+        "maxLevel": 42
+      },
+      {
+        "id": 100,
+        "chance": 100,
+        "minLevel": 21,
+        "maxLevel": 42
+      },
+      {
+        "id": 101,
+        "chance": 100,
+        "minLevel": 34,
+        "maxLevel": 43
+      },
+      {
+        "id": 109,
+        "chance": 100,
+        "minLevel": 37,
+        "maxLevel": 42
+      },
+      {
+        "id": 110,
+        "chance": 100,
+        "minLevel": 37,
+        "maxLevel": 42
+      },
+      {
+        "id": 113,
+        "chance": 100,
+        "minLevel": 37,
+        "maxLevel": 42
+      },
+      {
+        "id": 125,
+        "chance": 100,
+        "minLevel": 32,
+        "maxLevel": 42
+      },
+      {
+        "id": 145,
+        "chance": 100,
+        "minLevel": 50,
+        "maxLevel": 50
+      },
+      {
+        "id": 25,
+        "chance": 15,
+        "minLevel": 20,
+        "maxLevel": 26
+      },
+      {
+        "id": 26,
+        "chance": 4,
+        "minLevel": 33,
+        "maxLevel": 36
+      }
+    ]
+  },
+  {
+    "key": "seafoam-islands",
+    "name": "Острова Сифом",
+    "emoji": "🧊",
+    "color": "#38bdf8",
+    "desc": "Ледяные пещеры. Силы, Шеллдеры и легендарный Артикуно.",
+    "encounters": [
+      {
+        "id": 7,
+        "chance": 100,
+        "minLevel": 39,
+        "maxLevel": 44
+      },
+      {
+        "id": 41,
+        "chance": 100,
+        "minLevel": 9,
+        "maxLevel": 45
+      },
+      {
+        "id": 42,
+        "chance": 100,
+        "minLevel": 26,
+        "maxLevel": 44
+      },
+      {
+        "id": 79,
+        "chance": 100,
+        "minLevel": 15,
+        "maxLevel": 44
+      },
+      {
+        "id": 80,
+        "chance": 100,
+        "minLevel": 31,
+        "maxLevel": 50
+      },
+      {
+        "id": 86,
+        "chance": 100,
+        "minLevel": 22,
+        "maxLevel": 44
+      },
+      {
+        "id": 87,
+        "chance": 100,
+        "minLevel": 28,
+        "maxLevel": 44
+      },
+      {
+        "id": 90,
+        "chance": 100,
+        "minLevel": 15,
+        "maxLevel": 44
+      },
+      {
+        "id": 124,
+        "chance": 100,
+        "minLevel": 38,
+        "maxLevel": 44
+      },
+      {
+        "id": 72,
+        "chance": 100,
+        "minLevel": 20,
+        "maxLevel": 44
+      },
+      {
+        "id": 73,
+        "chance": 100,
+        "minLevel": 39,
+        "maxLevel": 44
+      },
+      {
+        "id": 91,
+        "chance": 100,
+        "minLevel": 39,
+        "maxLevel": 44
+      },
+      {
+        "id": 129,
+        "chance": 100,
+        "minLevel": 5,
+        "maxLevel": 44
+      },
+      {
+        "id": 144,
+        "chance": 100,
+        "minLevel": 50,
+        "maxLevel": 50
+      },
+      {
+        "id": 98,
+        "chance": 60,
+        "minLevel": 5,
+        "maxLevel": 33
+      },
+      {
+        "id": 116,
+        "chance": 60,
+        "minLevel": 5,
+        "maxLevel": 40
+      },
+      {
+        "id": 60,
+        "chance": 50,
+        "minLevel": 10,
+        "maxLevel": 10
+      },
+      {
+        "id": 118,
+        "chance": 50,
+        "minLevel": 10,
+        "maxLevel": 15
+      },
+      {
+        "id": 130,
+        "chance": 40,
+        "minLevel": 15,
+        "maxLevel": 40
+      },
+      {
+        "id": 54,
+        "chance": 30,
+        "minLevel": 15,
+        "maxLevel": 40
+      },
+      {
+        "id": 120,
+        "chance": 30,
+        "minLevel": 15,
+        "maxLevel": 40
+      },
+      {
+        "id": 99,
+        "chance": 20,
+        "minLevel": 28,
+        "maxLevel": 40
+      },
+      {
+        "id": 55,
+        "chance": 10,
+        "minLevel": 32,
+        "maxLevel": 40
+      },
+      {
+        "id": 296,
+        "chance": 10,
+        "minLevel": 30,
+        "maxLevel": 38
+      },
+      {
+        "id": 359,
+        "chance": 10,
+        "minLevel": 28,
+        "maxLevel": 35
+      },
+      {
+        "id": 433,
+        "chance": 10,
+        "minLevel": 30,
+        "maxLevel": 38
+      },
+      {
+        "id": 436,
+        "chance": 10,
+        "minLevel": 28,
+        "maxLevel": 35
+      },
+      {
+        "id": 117,
+        "chance": 10,
+        "minLevel": 37,
+        "maxLevel": 40
+      }
+    ]
+  },
+  {
+    "key": "pokemon-mansion",
+    "name": "Покемон Мэншн",
+    "emoji": "🏚️",
+    "color": "#f97316",
+    "desc": "Заброшенный особняк на Циннабар. Коффинги, Граймеры и Дитто.",
+    "encounters": [
+      {
+        "id": 19,
+        "chance": 100,
+        "minLevel": 26,
+        "maxLevel": 44
+      },
+      {
+        "id": 20,
+        "chance": 100,
+        "minLevel": 32,
+        "maxLevel": 46
+      },
+      {
+        "id": 88,
+        "chance": 100,
+        "minLevel": 23,
+        "maxLevel": 44
+      },
+      {
+        "id": 89,
+        "chance": 100,
+        "minLevel": 32,
+        "maxLevel": 44
+      },
+      {
+        "id": 109,
+        "chance": 100,
+        "minLevel": 28,
+        "maxLevel": 44
+      },
+      {
+        "id": 110,
+        "chance": 100,
+        "minLevel": 32,
+        "maxLevel": 44
+      },
+      {
+        "id": 113,
+        "chance": 100,
+        "minLevel": 39,
+        "maxLevel": 44
+      },
+      {
+        "id": 126,
+        "chance": 100,
+        "minLevel": 34,
+        "maxLevel": 44
+      },
+      {
+        "id": 132,
+        "chance": 100,
+        "minLevel": 12,
+        "maxLevel": 44
+      },
+      {
+        "id": 37,
+        "chance": 20,
+        "minLevel": 30,
+        "maxLevel": 35
+      },
+      {
+        "id": 58,
+        "chance": 20,
+        "minLevel": 26,
+        "maxLevel": 38
+      },
+      {
+        "id": 77,
+        "chance": 15,
+        "minLevel": 28,
+        "maxLevel": 36
+      }
+    ]
+  },
+  {
+    "key": "victory-road",
+    "name": "Дорога победы",
+    "emoji": "🏆",
+    "color": "#dc2626",
+    "desc": "Финальное испытание перед Лигой. Мачоки, Ониксы, Молтрес!",
+    "encounters": [
+      {
+        "id": 146,
+        "chance": 100,
+        "minLevel": 50,
+        "maxLevel": 50
+      },
+      {
+        "id": 42,
+        "chance": 20,
+        "minLevel": 39,
+        "maxLevel": 46
+      },
+      {
+        "id": 66,
+        "chance": 20,
+        "minLevel": 22,
+        "maxLevel": 34
+      },
+      {
+        "id": 74,
+        "chance": 20,
+        "minLevel": 24,
+        "maxLevel": 46
+      },
+      {
+        "id": 41,
+        "chance": 15,
+        "minLevel": 22,
+        "maxLevel": 44
+      },
+      {
+        "id": 75,
+        "chance": 10,
+        "minLevel": 41,
+        "maxLevel": 47
+      },
+      {
+        "id": 95,
+        "chance": 10,
+        "minLevel": 36,
+        "maxLevel": 49
+      },
+      {
+        "id": 57,
+        "chance": 10,
+        "minLevel": 42,
+        "maxLevel": 42
+      },
+      {
+        "id": 49,
+        "chance": 10,
+        "minLevel": 40,
+        "maxLevel": 40
+      },
+      {
+        "id": 24,
+        "chance": 5,
+        "minLevel": 44,
+        "maxLevel": 46
+      },
+      {
+        "id": 28,
+        "chance": 5,
+        "minLevel": 44,
+        "maxLevel": 46
+      },
+      {
+        "id": 67,
+        "chance": 5,
+        "minLevel": 39,
+        "maxLevel": 48
+      },
+      {
+        "id": 105,
+        "chance": 4,
+        "minLevel": 40,
+        "maxLevel": 48
+      }
+    ]
+  },
+  {
+    "key": "cerulean-cave",
+    "name": "Серулиан Кейв",
+    "emoji": "🔮",
+    "color": "#c026d3",
+    "desc": "Запретная пещера. Сильнейшие дикие покемоны и... Мьюту.",
+    "encounters": [
+      {
+        "id": 41,
+        "chance": 100,
+        "minLevel": 51,
+        "maxLevel": 56
+      },
+      {
+        "id": 42,
+        "chance": 100,
+        "minLevel": 38,
+        "maxLevel": 61
+      },
+      {
+        "id": 54,
+        "chance": 100,
+        "minLevel": 15,
+        "maxLevel": 60
+      },
+      {
+        "id": 55,
+        "chance": 100,
+        "minLevel": 40,
+        "maxLevel": 65
+      },
+      {
+        "id": 60,
+        "chance": 100,
+        "minLevel": 5,
+        "maxLevel": 56
+      },
+      {
+        "id": 61,
+        "chance": 100,
+        "minLevel": 20,
+        "maxLevel": 56
+      },
+      {
+        "id": 62,
+        "chance": 100,
+        "minLevel": 51,
+        "maxLevel": 56
+      },
+      {
+        "id": 74,
+        "chance": 100,
+        "minLevel": 22,
+        "maxLevel": 60
+      },
+      {
+        "id": 75,
+        "chance": 100,
+        "minLevel": 26,
+        "maxLevel": 65
+      },
+      {
+        "id": 108,
+        "chance": 100,
+        "minLevel": 50,
+        "maxLevel": 56
+      },
+      {
+        "id": 111,
+        "chance": 100,
+        "minLevel": 50,
+        "maxLevel": 56
+      },
+      {
+        "id": 112,
+        "chance": 100,
+        "minLevel": 51,
+        "maxLevel": 62
+      },
+      {
+        "id": 129,
+        "chance": 100,
+        "minLevel": 5,
+        "maxLevel": 56
+      },
+      {
+        "id": 132,
+        "chance": 100,
+        "minLevel": 39,
+        "maxLevel": 67
+      },
+      {
+        "id": 143,
+        "chance": 100,
+        "minLevel": 51,
+        "maxLevel": 56
+      },
+      {
+        "id": 113,
+        "chance": 100,
+        "minLevel": 51,
+        "maxLevel": 64
+      },
+      {
+        "id": 150,
+        "chance": 100,
+        "minLevel": 70,
+        "maxLevel": 70
+      },
+      {
+        "id": 79,
+        "chance": 60,
+        "minLevel": 15,
+        "maxLevel": 60
+      },
+      {
+        "id": 118,
+        "chance": 50,
+        "minLevel": 5,
+        "maxLevel": 30
+      },
+      {
+        "id": 80,
+        "chance": 30,
+        "minLevel": 23,
+        "maxLevel": 65
+      },
+      {
+        "id": 119,
+        "chance": 30,
+        "minLevel": 23,
+        "maxLevel": 60
+      },
+      {
+        "id": 117,
+        "chance": 25,
+        "minLevel": 23,
+        "maxLevel": 23
+      },
+      {
+        "id": 47,
+        "chance": 20,
+        "minLevel": 38,
+        "maxLevel": 64
+      },
+      {
+        "id": 49,
+        "chance": 20,
+        "minLevel": 49,
+        "maxLevel": 54
+      },
+      {
+        "id": 64,
+        "chance": 20,
+        "minLevel": 42,
+        "maxLevel": 67
+      },
+      {
+        "id": 67,
+        "chance": 20,
+        "minLevel": 39,
+        "maxLevel": 52
+      },
+      {
+        "id": 82,
+        "chance": 20,
+        "minLevel": 39,
+        "maxLevel": 55
+      },
+      {
+        "id": 85,
+        "chance": 20,
+        "minLevel": 49,
+        "maxLevel": 51
+      },
+      {
+        "id": 97,
+        "chance": 20,
+        "minLevel": 46,
+        "maxLevel": 46
+      },
+      {
+        "id": 105,
+        "chance": 20,
+        "minLevel": 52,
+        "maxLevel": 55
+      },
+      {
+        "id": 99,
+        "chance": 17,
+        "minLevel": 23,
+        "maxLevel": 23
+      },
+      {
+        "id": 101,
+        "chance": 15,
+        "minLevel": 40,
+        "maxLevel": 64
+      },
+      {
+        "id": 130,
+        "chance": 15,
+        "minLevel": 15,
+        "maxLevel": 40
+      },
+      {
+        "id": 24,
+        "chance": 10,
+        "minLevel": 52,
+        "maxLevel": 57
+      },
+      {
+        "id": 26,
+        "chance": 10,
+        "minLevel": 53,
+        "maxLevel": 64
+      },
+      {
+        "id": 28,
+        "chance": 10,
+        "minLevel": 52,
+        "maxLevel": 57
+      },
+      {
+        "id": 44,
+        "chance": 10,
+        "minLevel": 55,
+        "maxLevel": 58
+      },
+      {
+        "id": 53,
+        "chance": 10,
+        "minLevel": 38,
+        "maxLevel": 39
+      },
+      {
+        "id": 57,
+        "chance": 10,
+        "minLevel": 38,
+        "maxLevel": 61
+      },
+      {
+        "id": 70,
+        "chance": 10,
+        "minLevel": 55,
+        "maxLevel": 58
+      },
+      {
+        "id": 296,
+        "chance": 10,
+        "minLevel": 39,
+        "maxLevel": 45
+      },
+      {
+        "id": 359,
+        "chance": 10,
+        "minLevel": 38,
+        "maxLevel": 47
+      },
+      {
+        "id": 433,
+        "chance": 10,
+        "minLevel": 39,
+        "maxLevel": 45
+      },
+      {
+        "id": 436,
+        "chance": 10,
+        "minLevel": 38,
+        "maxLevel": 47
+      },
+      {
+        "id": 202,
+        "chance": 5,
+        "minLevel": 37,
+        "maxLevel": 61
+      },
+      {
+        "id": 40,
+        "chance": 5,
+        "minLevel": 54,
+        "maxLevel": 54
+      }
+    ]
+  }
+]

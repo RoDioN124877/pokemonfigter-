@@ -8,7 +8,7 @@ interface Props {
 }
 
 const TYPE_SPEED_MS = 22;
-export const PLAYER_SPRITE = 'https://play.pokemonshowdown.com/sprites/trainers/ethan.png';
+export const PLAYER_SPRITE = './sprites/trainers/ethan.png';
 
 // Pre-battle dialogue: typewriter text, click to reveal/advance, skippable.
 const DialogueBox: React.FC<Props> = ({ opponent, onDone }) => {

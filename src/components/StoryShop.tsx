@@ -111,7 +111,7 @@ const StoryShop: React.FC<Props> = ({ onBack, currentOpponentIndex }) => {
     const availableEquipment = getShopEquipment(defeatedCount);
 
     const TABS = [
-        { key: 'balls',   label: '🔴 Шары' },
+        { key: 'balls',   label: '⚪ Шары' },
         { key: 'buffs',   label: '⚡ Усилители' },
         { key: 'food',    label: '🍖 Корм' },
         { key: 'equip',   label: '⚔️ Снаряга' },
@@ -171,7 +171,7 @@ const StoryShop: React.FC<Props> = ({ onBack, currentOpponentIndex }) => {
                         return (
                             <PixelCard key={b.id} color="#dc2626">
                                 <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-                                    <span style={{ fontSize: 28 }}>{b.icon}</span>
+                                    <img src={b.sprite} alt={b.name} style={{ width: 32, height: 32, imageRendering: 'pixelated' }} />
                                     <div style={{ flex: 1 }}>
                                         <div style={{ color: '#e2e8f0', fontWeight: 700, fontSize: 13 }}>{b.name}</div>
                                         <div style={{ color: '#94a3b8', fontSize: 12, marginTop: 4 }}>{b.desc}</div>
@@ -187,7 +187,7 @@ const StoryShop: React.FC<Props> = ({ onBack, currentOpponentIndex }) => {
                     {BALLS.filter(b => defeatedCount < b.unlockAfterOpp).map(b => (
                         <PixelCard key={b.id} color="#334155" style={{ opacity: 0.45 }}>
                             <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-                                <span style={{ fontSize: 28, filter: 'grayscale(1)' }}>{b.icon}</span>
+                                <img src={b.sprite} alt={b.name} style={{ width: 32, height: 32, imageRendering: 'pixelated', filter: 'grayscale(1)' }} />
                                 <div style={{ flex: 1 }}>
                                     <div style={{ color: '#64748b', fontWeight: 700, fontSize: 13 }}>???</div>
                                     <div style={{ color: '#475569', fontSize: 10 }}>🔒 Откроется после {b.unlockAfterOpp} побед</div>
@@ -207,7 +207,7 @@ const StoryShop: React.FC<Props> = ({ onBack, currentOpponentIndex }) => {
                         return (
                             <PixelCard key={def.id} color="#3b82f6">
                                 <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-                                    <span style={{ fontSize: 26 }}>{def.icon}</span>
+                                    <img src={def.sprite} alt={def.name} style={{ width: 30, height: 30, imageRendering: 'pixelated' }} />
                                     <div style={{ flex: 1 }}>
                                         <div style={{ color: '#e2e8f0', fontWeight: 700, fontSize: 11 }}>{def.name}</div>
                                         <div style={{ color: '#64748b', fontSize: 10 }}>{def.desc}</div>
@@ -234,7 +234,7 @@ const StoryShop: React.FC<Props> = ({ onBack, currentOpponentIndex }) => {
                             return (
                                 <PixelCard key={def.id} color="#15803d">
                                     <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-                                        <span style={{ fontSize: 26 }}>{def.icon}</span>
+                                        <img src={def.sprite} alt={def.name} style={{ width: 30, height: 30, imageRendering: 'pixelated' }} />
                                         <div style={{ flex: 1 }}>
                                             <div style={{ color: '#e2e8f0', fontWeight: 700, fontSize: 11 }}>{def.name}</div>
                                             <div style={{ color: '#64748b', fontSize: 10 }}>{def.desc}</div>
@@ -276,7 +276,7 @@ const StoryShop: React.FC<Props> = ({ onBack, currentOpponentIndex }) => {
                                                     padding: '8px 10px',
                                                     display: 'flex', alignItems: 'center', gap: 8,
                                                 }}>
-                                                    <span style={{ fontSize: 22 }}>{def.icon}</span>
+                                                    <img src={def.sprite} alt={def.name} style={{ width: 28, height: 28, imageRendering: 'pixelated' }} />
                                                     <div style={{ flex: 1, minWidth: 0 }}>
                                                         <div style={{ display: 'flex', gap: 4, alignItems: 'center' }}>
                                                             <span style={{ color: TIER_COLOR[def.tier], fontSize: 8 }}>[{def.tier}]</span>
@@ -352,7 +352,7 @@ const StoryShop: React.FC<Props> = ({ onBack, currentOpponentIndex }) => {
                                     return (
                                         <PixelCard key={item.id} color="#dc2626">
                                             <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                                                <span style={{ fontSize: 22 }}>{def.icon}</span>
+                                                <img src={def.sprite} alt={def.name} style={{ width: 26, height: 26, imageRendering: 'pixelated' }} />
                                                 <div style={{ flex: 1 }}>
                                                     <div style={{ color: '#e2e8f0', fontWeight: 700, fontSize: 11 }}>{def.name}</div>
                                                     <div style={{ color: '#94a3b8', fontSize: 10 }}>×{item.qty}</div>
@@ -381,7 +381,7 @@ const StoryShop: React.FC<Props> = ({ onBack, currentOpponentIndex }) => {
                                             padding: '8px 10px', background: '#0a0f1e',
                                             display: 'flex', alignItems: 'center', gap: 8,
                                         }}>
-                                            <span style={{ fontSize: 22 }}>{def.icon}</span>
+                                            <img src={def.sprite} alt={def.name} style={{ width: 26, height: 26, imageRendering: 'pixelated' }} />
                                             <div style={{ flex: 1 }}>
                                                 <div style={{ color: '#e2e8f0', fontSize: 11, fontWeight: 700 }}>{def.name}</div>
                                                 <div style={{ color: '#94a3b8', fontSize: 10 }}>×{item.qty}</div>

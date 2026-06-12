@@ -57,7 +57,7 @@ function waitForYaGames(timeout = 5000): Promise<boolean> {
 
 export async function initYSDK(): Promise<void> {
     const available = await waitForYaGames();
-    if (!available) return;
+    if (!available || typeof YaGames === 'undefined') return;
     try {
         sdk = await YaGames.init();
         // NOTE: LoadingAPI.ready() is NOT called here — call markGameReady()

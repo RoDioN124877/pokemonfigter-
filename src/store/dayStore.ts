@@ -27,7 +27,7 @@ const DAILY_EVENTS: DailyEvent[] = [
 
 const HEAL_COST_PER_LEVEL = 15;
 
-const MAX_HUNTS_PER_AREA = 5;
+const MAX_HUNTS_PER_AREA = 3;
 const MAX_AD_HUNTS = 3;
 const TRAINING_DAYS = 3;
 const TRAINING_XP_PER_LEVEL = 600;

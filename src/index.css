@@ -3216,8 +3216,18 @@ body {
     #root { padding: 0 4px; }
 
     /* Main menu — stack mode cards */
-    .main-menu { padding: 12px; gap: 14px; height: 135vh; }
-    .main-menu h1 { font-size: 1.1rem; margin-bottom: 18px; }
+    .main-menu { padding: 12px; gap: 10px; height: auto; min-height: 100vh; }
+    .main-menu h1 { font-size: 1.1rem; margin-bottom: 10px; }
+    .menu-v2 { gap: 12px; padding: 20px 10px; }
+    .menu-grid { gap: 8px; max-width: 480px; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); }
+    .menu-card { padding: 14px 8px 12px; border-radius: 12px; }
+    .menu-card-icon { font-size: 1.6rem; }
+    .menu-card-title { font-size: 0.6rem; }
+    .menu-card-desc { font-size: 10px; }
+    .menu-profile { padding: 6px 10px; gap: 6px; }
+    .menu-profile-stat { padding: 3px 8px; min-width: 55px; }
+    .mps-value { font-size: 0.65rem; }
+    .mps-label { font-size: 9px; }
     .menu-button { padding: 11px 18px; font-size: 0.7rem; }
 
     /* Story map header — stack vertically */

@@ -134,7 +134,7 @@ const QuickEquipPicker: React.FC<Props> = ({ pokemon, onClose }) => {
                                     alignItems: 'center', minHeight: 64,
                                 }}
                             >
-                                <span style={{ fontSize: 24 }}>{item.icon}</span>
+                                <img src={item.sprite} alt={item.name} style={{ width: 28, height: 28, imageRendering: 'pixelated' }} />
                                 <div style={{ flex: 1, minWidth: 0 }}>
                                     <div style={{ fontSize: 11, color: TIER_COLOR[item.tier], fontWeight: 700 }}>
                                         [{item.tier}{item.rare ? ' · РЕДКОЕ' : ''}]

@@ -14,20 +14,39 @@ import { applyEquipmentToPokemon } from '../utils/equipUtils';
 import type { Pokemon } from '../types/Pokemon';
 import BattleArena from './BattleArena';
 import PokemonStatMini from './PokemonStatMini';
+import kantoRaw from '../data/kantoLocations.json';
 
-const POOL_GRASS    = [16, 19, 21, 23, 27, 29, 32, 35, 41, 46, 48, 52, 60, 63, 74, 77, 79, 84];
-const POOL_MOUNTAIN = [88, 90, 95, 98, 102, 104, 111, 114, 118, 120, 122, 124, 125, 126, 128];
-const POOL_CAVE     = [130, 131, 134, 135, 136, 137, 140, 142, 143, 144, 145, 146, 147, 148];
-const POOL_OCEAN    = [55, 62, 73, 87, 91, 99, 116, 117, 119, 121, 129, 130, 138, 139];
-const POOL_VOLCANO  = [4, 5, 6, 37, 38, 58, 59, 77, 78, 126, 136, 146];
-const POOL_RUINS    = [63, 64, 65, 92, 93, 94, 96, 97, 103, 105, 106, 122, 124, 137, 143, 144, 145, 150];
+interface KantoEnc { id: number; chance: number; minLevel: number; maxLevel: number; }
+interface KantoLoc { key: string; name: string; emoji: string; color: string; desc: string; encounters: KantoEnc[]; }
+const KANTO = kantoRaw as KantoLoc[];
+
+const ITEM = (name: string) => `./sprites/items/${name}.png`;
+
+const AREA_META: Record<string, { baseLevel: number; levelScale: number; moneyPerLevel: number; minOpponent: number; icon: string }> = {
+    'route-1':         { baseLevel: 3,  levelScale: 1, moneyPerLevel: 25,   minOpponent: 0,  icon: ITEM('soothe-bell')     },
+    'route-2':         { baseLevel: 5,  levelScale: 1, moneyPerLevel: 30,   minOpponent: 0,  icon: ITEM('miracle-seed')    },
+    'viridian-forest': { baseLevel: 7,  levelScale: 2, moneyPerLevel: 40,   minOpponent: 1,  icon: ITEM('silver-powder')   },
+    'route-3':         { baseLevel: 10, levelScale: 2, moneyPerLevel: 55,   minOpponent: 2,  icon: ITEM('hard-stone')      },
+    'mt-moon':         { baseLevel: 14, levelScale: 2, moneyPerLevel: 75,   minOpponent: 3,  icon: ITEM('moon-stone')      },
+    'route-4':         { baseLevel: 17, levelScale: 2, moneyPerLevel: 90,   minOpponent: 3,  icon: ITEM('quick-claw')      },
+    'route-24':        { baseLevel: 20, levelScale: 3, moneyPerLevel: 120,  minOpponent: 4,  icon: ITEM('amulet-coin')     },
+    'route-25':        { baseLevel: 24, levelScale: 3, moneyPerLevel: 150,  minOpponent: 5,  icon: ITEM('mystic-water')    },
+    'rock-tunnel':     { baseLevel: 28, levelScale: 3, moneyPerLevel: 200,  minOpponent: 5,  icon: ITEM('soft-sand')       },
+    'pokemon-tower':   { baseLevel: 32, levelScale: 3, moneyPerLevel: 260,  minOpponent: 6,  icon: ITEM('spell-tag')       },
+    'safari-zone':     { baseLevel: 38, levelScale: 4, moneyPerLevel: 350,  minOpponent: 8,  icon: ITEM('lucky-egg')       },
+    'power-plant':     { baseLevel: 42, levelScale: 4, moneyPerLevel: 450,  minOpponent: 9,  icon: ITEM('magnet')          },
+    'seafoam-islands': { baseLevel: 48, levelScale: 4, moneyPerLevel: 550,  minOpponent: 10, icon: ITEM('never-melt-ice')  },
+    'pokemon-mansion': { baseLevel: 54, levelScale: 5, moneyPerLevel: 700,  minOpponent: 11, icon: ITEM('charcoal')        },
+    'victory-road':    { baseLevel: 62, levelScale: 5, moneyPerLevel: 900,  minOpponent: 13, icon: ITEM('expert-belt')     },
+    'cerulean-cave':   { baseLevel: 75, levelScale: 6, moneyPerLevel: 1250, minOpponent: 16, icon: ITEM('life-orb')        },
+};
 
 interface AreaDef {
     key: string;
     label: string;
-    emoji: string;
+    icon: string;
     desc: string;
-    pool: number[];
+    pool: KantoEnc[];
     baseLevel: number;
     levelScale: number;
     moneyPerLevel: number;
@@ -35,44 +54,17 @@ interface AreaDef {
     color: string;
 }
 
-const AREAS: AreaDef[] = [
-    {
-        key: 'grass', label: 'Луга', emoji: '🌿',
-        desc: 'Слабые дикие покемоны. Хороший старт для гринда.',
-        pool: POOL_GRASS, baseLevel: 5, levelScale: 2, moneyPerLevel: 28,
-        minOpponent: 0, color: '#22c55e',
-    },
-    {
-        key: 'mountain', label: 'Горы', emoji: '🏔️',
-        desc: 'Сильные противники. Больше денег и опыта.',
-        pool: POOL_MOUNTAIN, baseLevel: 18, levelScale: 3, moneyPerLevel: 55,
-        minOpponent: 3, color: '#f97316',
-    },
-    {
-        key: 'ocean', label: 'Океан', emoji: '🌊',
-        desc: 'Водные покемоны. Хороший заработок.',
-        pool: POOL_OCEAN, baseLevel: 22, levelScale: 3, moneyPerLevel: 65,
-        minOpponent: 4, color: '#3b82f6',
-    },
-    {
-        key: 'cave', label: 'Пещеры', emoji: '🌑',
-        desc: 'Опасные редкие покемоны. Высокая награда.',
-        pool: POOL_CAVE, baseLevel: 38, levelScale: 4, moneyPerLevel: 100,
-        minOpponent: 7, color: '#a855f7',
-    },
-    {
-        key: 'volcano', label: 'Вулкан', emoji: '🌋',
-        desc: 'Огненные покемоны. Очень высокая награда.',
-        pool: POOL_VOLCANO, baseLevel: 45, levelScale: 4, moneyPerLevel: 140,
-        minOpponent: 10, color: '#ef4444',
-    },
-    {
-        key: 'ruins', label: 'Руины', emoji: '🏛️',
-        desc: 'Призраки и психики. Легендарные встречи. Максимум денег.',
-        pool: POOL_RUINS, baseLevel: 55, levelScale: 5, moneyPerLevel: 200,
-        minOpponent: 14, color: '#eab308',
-    },
-];
+const AREAS: AreaDef[] = KANTO.map(loc => {
+    const meta = AREA_META[loc.key] ?? { baseLevel: 10, levelScale: 2, moneyPerLevel: 40, minOpponent: 0, icon: ITEM('soothe-bell') };
+    return {
+        key: loc.key,
+        label: loc.name,
+        desc: loc.desc,
+        pool: loc.encounters,
+        color: loc.color,
+        ...meta,
+    };
+});
 
 interface Encounter {
     pokemon: Pokemon;
@@ -104,10 +96,16 @@ const StoryHunt: React.FC<{ onBack: () => void }> = ({ onBack }) => {
             return;
         }
         setLoading(true);
-        const shuffled = [...a.pool].sort(() => Math.random() - 0.5).slice(0, 4);
-        fetchPokemonsByIds(shuffled).then(poks => {
+        const weighted = a.pool.flatMap(e =>
+            Array(Math.max(1, Math.ceil(e.chance / 10))).fill(e)
+        );
+        const picked = new Set<number>();
+        while (picked.size < Math.min(4, a.pool.length)) {
+            picked.add(weighted[Math.floor(Math.random() * weighted.length)].id);
+        }
+        fetchPokemonsByIds([...picked]).then(poks => {
             setEncounters(poks.map(p => {
-                const lv = Math.min(70, a.baseLevel + currentOpponentIndex * a.levelScale + Math.floor(Math.random() * 6));
+                const lv = Math.min(80, a.baseLevel + currentOpponentIndex * a.levelScale + Math.floor(Math.random() * 6));
                 return { pokemon: p, level: lv, moneyReward: lv * a.moneyPerLevel };
             }));
             setLoading(false);
@@ -116,7 +114,9 @@ const StoryHunt: React.FC<{ onBack: () => void }> = ({ onBack }) => {
 
     const selectArea = (a: AreaDef) => {
         setArea(a);
-        loadEncounters(a);
+        if (encounters.length === 0 || area?.key !== a.key) {
+            loadEncounters(a);
+        }
         setView('pick-encounter');
     };
 
@@ -249,7 +249,7 @@ const StoryHunt: React.FC<{ onBack: () => void }> = ({ onBack }) => {
                     {dayStore.getAdHuntsLeft()}/{MAX_AD_HUNTS}
                 </strong>
             </div>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 10 }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 8 }}>
                 {AREAS.map(a => {
                     const locked = currentOpponentIndex < a.minOpponent;
                     const lv = a.baseLevel + currentOpponentIndex * a.levelScale;
@@ -266,12 +266,15 @@ const StoryHunt: React.FC<{ onBack: () => void }> = ({ onBack }) => {
                             onMouseEnter={e => !locked && !exhausted && (e.currentTarget.style.borderColor = a.color)}
                             onMouseLeave={e => !locked && !exhausted && (e.currentTarget.style.borderColor = a.color + '55')}
                         >
-                            <div style={{ fontSize: 34, marginBottom: 6 }}>{a.emoji}</div>
-                            <div style={{ color: '#e2e8f0', fontWeight: 700, fontSize: 14, marginBottom: 3 }}>{a.label}</div>
-                            <div style={{ color: '#64748b', fontSize: 10, marginBottom: 6, lineHeight: 1.4 }}>{a.desc}</div>
-                            <div style={{ color: '#94a3b8', fontSize: 11 }}>Lv.{lv}–{lv + 5}</div>
-                            <div style={{ color: '#fbbf24', fontSize: 12, marginTop: 3 }}>
-                                🏆 до {(lv * a.moneyPerLevel).toLocaleString()}G
+                            <img src={a.icon} alt={a.label} style={{ width: 48, height: 48, imageRendering: 'pixelated', filter: locked ? 'grayscale(1) brightness(0.4)' : undefined }} />
+                            <div style={{ color: '#e2e8f0', fontWeight: 700, fontSize: 12, marginBottom: 2 }}>{a.label}</div>
+                            <div style={{ color: '#64748b', fontSize: 9, marginBottom: 4, lineHeight: 1.3 }}>{a.desc}</div>
+                            <div style={{ color: '#94a3b8', fontSize: 10 }}>Lv.{lv}–{lv + 5}</div>
+                            <div style={{ color: '#fbbf24', fontSize: 11, marginTop: 2 }}>
+                                💰 {(lv * a.moneyPerLevel).toLocaleString()}G
+                            </div>
+                            <div style={{ color: '#64748b', fontSize: 9, marginTop: 2 }}>
+                                {a.pool.length} видов
                             </div>
                             {/* Hunt counter */}
                             {!locked && (
@@ -310,7 +313,10 @@ const StoryHunt: React.FC<{ onBack: () => void }> = ({ onBack }) => {
             <div className="story-screen" style={{ padding: 20, maxWidth: 700, margin: '0 auto' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 16 }}>
                     <button className="story-btn story-btn--secondary" onClick={() => setView('pick-area')} style={{ padding: '6px 14px' }}>← Назад</button>
-                    <h2 style={{ color: '#e2e8f0', margin: 0, fontSize: 20 }}>{area?.emoji} {area?.label}</h2>
+                    <h2 style={{ color: '#e2e8f0', margin: 0, fontSize: 20, display: 'flex', alignItems: 'center', gap: 8 }}>
+                        {area && <img src={area.icon} alt="" style={{ width: 32, height: 32, imageRendering: 'pixelated' }} />}
+                        {area?.label}
+                    </h2>
                     <div style={{ marginLeft: 'auto', display: 'flex', gap: 6, alignItems: 'center' }}>
                         <span style={{
                             fontSize: 11, fontWeight: 700,
@@ -489,7 +495,7 @@ const StoryHunt: React.FC<{ onBack: () => void }> = ({ onBack }) => {
                                         color: '#e2e8f0', opacity: blocked ? 0.5 : 1,
                                         display: 'flex', flexDirection: 'column', alignItems: 'center', minWidth: 78,
                                     }}>
-                                        <div style={{ fontSize: 24 }}>{ball.icon}</div>
+                                        <img src={ball.sprite} alt={ball.name} style={{ width: 32, height: 32, imageRendering: 'pixelated' }} />
                                         <div style={{ fontSize: 9, color: '#94a3b8' }}>×{qty}</div>
                                         <div style={{ fontSize: 11, color: '#4ade80', fontWeight: 700 }}>{Math.round(chance * 100)}%</div>
                                     </button>

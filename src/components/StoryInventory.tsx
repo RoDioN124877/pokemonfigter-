@@ -255,7 +255,7 @@ const PokemonCard: React.FC<{
                                                 borderRadius: 8, cursor: qty > 0 ? 'pointer' : 'default',
                                                 opacity: qty > 0 ? 1 : 0.4, textAlign: 'left',
                                             }}>
-                                            <span style={{ fontSize: 20 }}>{def.icon}</span>
+                                            <img src={def.sprite} alt={def.name} style={{ width: 24, height: 24, imageRendering: 'pixelated' }} />
                                             <div style={{ flex: 1 }}>
                                                 <div style={{ color: '#e2e8f0', fontSize: 12, fontWeight: 700 }}>{def.name}</div>
                                                 <div style={{ color: '#64748b', fontSize: 10 }}>+{def.xpGain} EXP</div>
@@ -606,7 +606,7 @@ const StoryInventory: React.FC<Props> = ({ onBack }) => {
                                     borderRadius: 10, padding: '12px 14px', background: '#0f172a',
                                     display: 'flex', alignItems: 'center', gap: 10, opacity: qty > 0 ? 1 : 0.45,
                                 }}>
-                                    <span style={{ fontSize: 28 }}>{def.icon}</span>
+                                    <img src={def.sprite} alt={def.name} style={{ width: 32, height: 32, imageRendering: 'pixelated' }} />
                                     <div style={{ flex: 1 }}>
                                         <div style={{ color: '#e2e8f0', fontWeight: 700, fontSize: 13 }}>{def.name}</div>
                                         <div style={{ color: '#64748b', fontSize: 11 }}>{def.desc}</div>
@@ -624,7 +624,7 @@ const StoryInventory: React.FC<Props> = ({ onBack }) => {
 
                     {/* Pokeball count */}
                     <div style={{ border: '1px solid #1e293b', borderRadius: 10, padding: '10px 14px', background: '#0f172a', display: 'flex', alignItems: 'center', gap: 10, marginTop: 10 }}>
-                        <span style={{ fontSize: 24 }}>🔴</span>
+                        <img src="./sprites/balls/poke-ball.png" alt="Покебол" style={{ width: 28, height: 28, imageRendering: 'pixelated' }} />
                         <div>
                             <div style={{ color: '#e2e8f0', fontWeight: 700, fontSize: 13 }}>Покеболы</div>
                             <div style={{ color: '#64748b', fontSize: 11 }}>Для поимки после победы</div>
