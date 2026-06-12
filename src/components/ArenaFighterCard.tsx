@@ -1,71 +1,85 @@
 import React from "react";
 import type { BattleFighter, DamageType } from "../types/Pokemon";
+import { getAbilityInfo, ABILITY_INFO } from "../utils/battleUtils";
+import StatusOverlay from "./StatusOverlay";
 
 interface Props {
-  fighter: BattleFighter;
-  isActive: boolean;
-  teamNum: 1 | 2;
-  animClass: string;
-  damageQueue: {
-    amount: number;
-    type: DamageType;
-    isCrit?: boolean;
-    timestamp: number;
-  }[];
+    fighter: BattleFighter;
+    isActive: boolean;
+    teamNum: 1 | 2;
+    animClass: string;
+    damageQueue: { amount: number; type: DamageType; isCrit?: boolean; timestamp: number }[];
 }
 
-const ArenaFighterCard: React.FC<Props> = ({
-  fighter,
-  isActive,
-  teamNum,
-  animClass,
-  damageQueue,
-}) => {
-  const { currentHP, initialHP, name, imageFront, imageBack } = fighter;
-  const isFainted = currentHP <= 0;
-  const hpPct = Math.max(0, (currentHP / initialHP) * 100);
+const STATUS_ICONS: Record<string, string> = {
+    burn: '🔥', poison: '☠️', paralysis: '⚡', confusion: '😵',
+    slow: '❄️', freeze: '🧊', sleep: '💤', drenched: '💧', bleed: '🩸',
+};
 
-  let wrapperClass = `fighter-wrapper ${animClass}`;
-  if (isActive) wrapperClass += " active";
-  else wrapperClass += " benched";
-  if (isFainted) wrapperClass += " fainted";
-  
-  const hpColor = hpPct < 30 ? "#e74c3c" : hpPct < 60 ? "#f1c40f" : "#2ecc71";
+const ArenaFighterCard: React.FC<Props> = ({ fighter, isActive, teamNum, animClass, damageQueue }) => {
+    const { currentHP, initialHP, name, imageFront, imageBack, status, abilityNames } = fighter;
+    const isFainted = currentHP <= 0;
+    const hpPct = Math.max(0, (currentHP / initialHP) * 100);
+    const hpColor = hpPct < 25 ? '#e74c3c' : hpPct < 55 ? '#f39c12' : '#2ecc71';
 
-  return (
-    <div className={wrapperClass}>
-      {/* UI (ХП и Имя) скрываем если мертв */}
-      <div className="battle-hud" style={{ opacity: isFainted ? 0 : 1 }}>
-        <div style={{ fontSize: "0.8rem", fontWeight: "bold" }}>
-          {name}
+    const activeStatuses = Object.entries(status)
+        .filter(([, v]) => v)
+        .map(([k]) => STATUS_ICONS[k] || k);
+
+    // Show top 1 known ability
+    const topAbility = abilityNames.find(n => n in ABILITY_INFO);
+    const abilityInfo = topAbility ? getAbilityInfo(topAbility) : null;
+
+    let wrapperClass = `fighter-wrapper ${animClass}`;
+    if (isActive) wrapperClass += ' active';
+    else wrapperClass += ' benched';
+    if (isFainted) wrapperClass += ' fainted';
+
+    return (
+        <div className={wrapperClass}>
+            {/* HUD */}
+            <div className="battle-hud" style={{ opacity: isFainted ? 0 : 1 }}>
+                <div className="battle-hud-name">{name}</div>
+                {abilityInfo && isActive && (
+                    <div className="arena-ability-badge">{abilityInfo.icon} {topAbility!.replace(/-/g, ' ')}</div>
+                )}
+                <div style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
+                    <div className="hp-bar-container" style={{ flex: 1 }}>
+                        <div className="hp-bar" style={{ width: `${hpPct}%`, background: hpColor }} />
+                    </div>
+                    <span style={{ fontSize: '0.45rem', color: hpColor, minWidth: 28 }}>
+                        {Math.ceil(currentHP)}/{initialHP}
+                    </span>
+                </div>
+                {activeStatuses.length > 0 && (
+                    <div className="status-icons">{activeStatuses.join(' ')}</div>
+                )}
+            </div>
+
+            {/* Sprite + status particles */}
+            <div className="fighter-sprite-wrap">
+                <img
+                    src={teamNum === 1 ? imageBack : imageFront}
+                    className="fighter-img"
+                    alt={name}
+                />
+                {isActive && !isFainted && (
+                    <StatusOverlay statuses={status} teamNum={teamNum} />
+                )}
+            </div>
+
+            {/* Floating damage numbers */}
+            {damageQueue.map((d, i) => (
+                <div
+                    key={`${d.timestamp}-${i}`}
+                    className={`damage-number ${d.type}${d.isCrit ? ' crit' : ''}`}
+                >
+                    {d.type === 'heal' ? '+' : '-'}{d.amount}
+                    {d.isCrit && ' 💥'}
+                </div>
+            ))}
         </div>
-        <div className="hp-bar-container">
-          <div
-            className="hp-bar"
-            style={{ width: `${hpPct}%`, background: hpColor }}
-          />
-        </div>
-      </div>
-      {/* Картинка */}
-      <img
-        src={teamNum === 1 ? imageBack : imageFront}
-        className="fighter-img"
-        alt={name}
-      />
-      {/* Вылетающие цифры */}
-      {damageQueue.map((d, i) => (
-          <div
-            // Добавляем индекс к ключу, чтобы React не ругался при одинаковых таймстампах
-            key={`${d.timestamp}-${i}`}
-            className={`damage-number ${d.type} ${d.isCrit ? "crit" : ""}`}
-          >
-            {d.type === "heal" ? "+" : "-"}
-            {d.amount} {d.isCrit && "💥"}
-          </div>
-        )
-      )}
-    </div>
-  );
+    );
 };
 
 export default ArenaFighterCard;

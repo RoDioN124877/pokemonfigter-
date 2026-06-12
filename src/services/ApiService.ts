@@ -1,7 +1,12 @@
 import type { Pokemon, PokemonStat } from '../types/Pokemon';
 
-export const BATCH_SIZE = 50;
-export const INITIAL_LOAD_COUNT = 100;
+export const PAGE_SIZE = 24;
+export const MAX_POKEMON_ID = 1010;
+
+export interface ListEntry {
+    id: number;
+    name: string;
+}
 
 interface PokemonApiResponse {
     id: number;
@@ -18,16 +23,13 @@ interface PokemonApiResponse {
 }
 
 const getStatsMap = (stats: PokemonStat[]): Record<string, number> => {
-    const statsMap: Record<string, number> = {};
-    stats.forEach(stat => {
-        statsMap[stat.stat.name] = stat.base_stat;
-    });
-    return statsMap;
+    const map: Record<string, number> = {};
+    stats.forEach(s => { map[s.stat.name] = s.base_stat; });
+    return map;
 };
 
 const processPokemonData = (pok: PokemonApiResponse): Pokemon => {
     const statsMap = getStatsMap(pok.stats);
-
     return {
         id: pok.id,
         name: pok.name,
@@ -43,7 +45,7 @@ const processPokemonData = (pok: PokemonApiResponse): Pokemon => {
             defense: statsMap['defense'] || 0,
             speed: statsMap['speed'] || 0,
             'special-attack': statsMap['special-attack'] || 0,
-            'special-defense': statsMap['special-defense'] || 0
+            'special-defense': statsMap['special-defense'] || 0,
         },
         height: pok.height,
         weight: pok.weight,
@@ -52,22 +54,42 @@ const processPokemonData = (pok: PokemonApiResponse): Pokemon => {
     };
 };
 
-export async function fetchPokemonsBatch(startId: number, count: number = BATCH_SIZE): Promise<Pokemon[]> {
-    const promises = [];
-    const endId = Math.min(startId + count - 1, 1010); // Ограничиваем максимальный ID
+// Single fast request: fetches all ~1010 pokemon names
+export async function fetchAllEntries(): Promise<ListEntry[]> {
+    const res = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=${MAX_POKEMON_ID}&offset=0`);
+    if (!res.ok) throw new Error('Failed to fetch pokemon list');
+    const data = await res.json();
+    return (data.results as { name: string }[]).map((entry, idx) => ({
+        id: idx + 1,
+        name: entry.name,
+    }));
+}
 
-    for (let i = startId; i <= endId; i++) {
-        promises.push(
-            fetch(`https://pokeapi.co/api/v2/pokemon/${i}`)
+// Fetch all pokemon IDs belonging to a type from PokeAPI /type/ endpoint
+export async function fetchPokemonIdsByType(typeName: string): Promise<number[]> {
+    const res = await fetch(`https://pokeapi.co/api/v2/type/${typeName}`);
+    if (!res.ok) throw new Error(`Failed to fetch type ${typeName}`);
+    const data = await res.json();
+    return (data.pokemon as { pokemon: { url: string } }[])
+        .map(entry => {
+            const parts = entry.pokemon.url.split('/');
+            return parseInt(parts[parts.length - 2], 10);
+        })
+        .filter(id => id > 0 && id <= MAX_POKEMON_ID);
+}
+
+// Batch fetch pokemon details by IDs (parallel)
+export async function fetchPokemonsByIds(ids: number[]): Promise<Pokemon[]> {
+    const results = await Promise.all(
+        ids.map(id =>
+            fetch(`https://pokeapi.co/api/v2/pokemon/${id}`)
                 .then(r => {
                     if (r.status === 404) return null;
-                    if (!r.ok) throw new Error(`HTTP error! status: ${r.status}`);
-                    return r.json();
+                    if (!r.ok) throw new Error(`HTTP ${r.status}`);
+                    return r.json() as Promise<PokemonApiResponse>;
                 })
                 .catch(() => null)
-        );
-    }
-
-    const data = await Promise.all(promises);
-    return data.filter(Boolean).map(processPokemonData);
+        )
+    );
+    return results.filter(Boolean).map(d => processPokemonData(d!));
 }

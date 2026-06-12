@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>Pokemon Fighter — Generate Icon & Cover</title>
+<style>
+  body { background: #1a1a2e; color: #eee; font-family: sans-serif; display: flex; flex-direction: column; align-items: center; gap: 24px; padding: 32px; }
+  canvas { border: 2px solid #333; border-radius: 8px; }
+  button { background: #FFD600; color: #111; border: none; padding: 10px 24px; border-radius: 6px; font-size: 16px; font-weight: bold; cursor: pointer; margin-top: 8px; }
+  button:hover { background: #FFC107; }
+  .block { text-align: center; }
+  h2 { margin: 0 0 8px; }
+  #status { font-size: 18px; color: #FFD600; }
+</style>
+</head>
+<body>
+  <h1>Pokemon Fighter — Assets</h1>
+  <div id="status">Loading sprites...</div>
+
+  <div class="block">
+    <h2>Icon 512×512</h2>
+    <canvas id="icon" width="512" height="512"></canvas><br>
+    <button id="dl-icon">Download icon PNG</button>
+  </div>
+
+  <div class="block">
+    <h2>Cover 800×470</h2>
+    <canvas id="cover" width="800" height="470"></canvas><br>
+    <button id="dl-cover">Download cover PNG</button>
+  </div>
+
+<script>
+const ART = id => `https://cdn.jsdelivr.net/gh/PokeAPI/sprites@master/sprites/pokemon/other/official-artwork/${id}.png`;
+
+function loadImg(src) {
+  return new Promise((res, rej) => {
+    const img = new Image();
+    img.crossOrigin = 'anonymous';
+    img.onload = () => res(img);
+    img.onerror = () => rej(new Error('Failed: ' + src));
+    img.src = src;
+  });
+}
+
+const toLoad = {
+  charizard: ART(6),
+  blastoise: ART(9),
+  pikachu: ART(25),
+  mewtwo: ART(150),
+  gengar: ART(94),
+  dragonite: ART(149),
+};
+
+Promise.all(Object.entries(toLoad).map(([k, url]) => loadImg(url).then(img => [k, img])))
+  .then(entries => {
+    const imgs = Object.fromEntries(entries);
+    document.getElementById('status').textContent = 'Sprites loaded! Images ready.';
+    drawIcon(imgs);
+    drawCover(imgs);
+  })
+  .catch(err => {
+    document.getElementById('status').textContent = 'Error loading sprites: ' + err.message;
+  });
+
+function drawMiniPokeball(c, cx, cy, r) {
+  c.save();
+  c.fillStyle = '#E53935';
+  c.beginPath(); c.arc(cx, cy, r, Math.PI, 0); c.fill();
+  c.fillStyle = '#F5F5F5';
+  c.beginPath(); c.arc(cx, cy, r, 0, Math.PI); c.fill();
+  c.fillStyle = '#222'; c.fillRect(cx - r, cy - 1.5, r * 2, 3);
+  c.beginPath(); c.arc(cx, cy, r * 0.3, 0, Math.PI * 2); c.fill();
+  c.fillStyle = '#FFF';
+  c.beginPath(); c.arc(cx, cy, r * 0.13, 0, Math.PI * 2); c.fill();
+  c.strokeStyle = '#111'; c.lineWidth = 1.5;
+  c.beginPath(); c.arc(cx, cy, r, 0, Math.PI * 2); c.stroke();
+  c.restore();
+}
+
+function drawIcon(imgs) {
+  const c = document.getElementById('icon').getContext('2d');
+  const S = 512;
+
+  const g = c.createRadialGradient(256, 220, 50, 256, 256, 360);
+  g.addColorStop(0, '#2a1a5e'); g.addColorStop(0.5, '#1a0f3c'); g.addColorStop(1, '#0a0618');
+  c.fillStyle = g; c.fillRect(0, 0, S, S);
+
+  const glow = c.createRadialGradient(256, 240, 20, 256, 240, 200);
+  glow.addColorStop(0, 'rgba(255,70,40,0.35)'); glow.addColorStop(0.5, 'rgba(255,140,0,0.12)'); glow.addColorStop(1, 'rgba(0,0,0,0)');
+  c.fillStyle = glow; c.fillRect(0, 0, S, S);
+
+  c.drawImage(imgs.charizard, 96, 80, 320, 320);
+
+  const fade = c.createLinearGradient(0, 350, 0, S);
+  fade.addColorStop(0, 'rgba(10,6,24,0)'); fade.addColorStop(0.4, 'rgba(10,6,24,0.85)'); fade.addColorStop(1, 'rgba(10,6,24,1)');
+  c.fillStyle = fade; c.fillRect(0, 350, S, S - 350);
+
+  c.textAlign = 'center'; c.textBaseline = 'middle';
+  c.shadowColor = 'rgba(0,0,0,0.7)'; c.shadowBlur = 10; c.shadowOffsetY = 3;
+  c.fillStyle = '#FFF'; c.font = 'bold 52px "Arial Black", Impact, sans-serif';
+  c.fillText('POKEMON', 256, 420);
+  c.fillStyle = '#FFD600'; c.font = 'bold 44px "Arial Black", Impact, sans-serif';
+  c.fillText('FIGHTER', 256, 472);
+  c.shadowBlur = 0; c.shadowOffsetY = 0;
+
+  for (let i = 0; i < 30; i++) {
+    const x = Math.random() * S, y = Math.random() * 350;
+    const s = 1 + Math.random() * 2.5;
+    c.fillStyle = `rgba(255,${200 + Math.floor(Math.random() * 55)},${Math.floor(Math.random() * 100)},${0.3 + Math.random() * 0.5})`;
+    c.fillRect(x, y, s, s);
+  }
+
+  drawMiniPokeball(c, 40, 40, 20);
+  drawMiniPokeball(c, S - 40, 40, 20);
+}
+
+function drawCover(imgs) {
+  const c = document.getElementById('cover').getContext('2d');
+  const W = 800, H = 470;
+
+  const g = c.createLinearGradient(0, 0, W, H);
+  g.addColorStop(0, '#1a0f3c'); g.addColorStop(0.5, '#0f1a3c'); g.addColorStop(1, '#1a0f3c');
+  c.fillStyle = g; c.fillRect(0, 0, W, H);
+
+  const fg = c.createRadialGradient(400, 380, 30, 400, 380, 350);
+  fg.addColorStop(0, 'rgba(120,80,200,0.2)'); fg.addColorStop(0.5, 'rgba(60,30,120,0.1)'); fg.addColorStop(1, 'rgba(0,0,0,0)');
+  c.fillStyle = fg; c.fillRect(0, 200, W, 270);
+
+  c.strokeStyle = 'rgba(180,140,255,0.25)'; c.lineWidth = 2;
+  c.beginPath(); c.ellipse(400, 390, 320, 55, 0, 0, Math.PI * 2); c.stroke();
+  c.strokeStyle = 'rgba(180,140,255,0.15)';
+  c.beginPath(); c.ellipse(400, 390, 250, 40, 0, 0, Math.PI * 2); c.stroke();
+
+  const lg = c.createRadialGradient(180, 260, 20, 180, 260, 180);
+  lg.addColorStop(0, 'rgba(255,60,30,0.25)'); lg.addColorStop(1, 'rgba(0,0,0,0)');
+  c.fillStyle = lg; c.fillRect(0, 80, 400, 370);
+
+  const rg = c.createRadialGradient(620, 260, 20, 620, 260, 180);
+  rg.addColorStop(0, 'rgba(30,100,255,0.25)'); rg.addColorStop(1, 'rgba(0,0,0,0)');
+  c.fillStyle = rg; c.fillRect(400, 80, 400, 370);
+
+  c.save();
+  c.shadowColor = 'rgba(255,80,30,0.5)'; c.shadowBlur = 30;
+  c.drawImage(imgs.charizard, 20, 120, 280, 280);
+  c.restore();
+
+  c.save();
+  c.shadowColor = 'rgba(100,50,255,0.5)'; c.shadowBlur = 30;
+  c.translate(780, 0); c.scale(-1, 1);
+  c.drawImage(imgs.mewtwo, 0, 100, 280, 280);
+  c.restore();
+
+  c.save();
+  c.shadowColor = 'rgba(255,220,0,0.4)'; c.shadowBlur = 20;
+  c.drawImage(imgs.pikachu, 260, 260, 140, 140);
+  c.restore();
+
+  c.save();
+  c.shadowColor = 'rgba(120,50,180,0.5)'; c.shadowBlur = 20;
+  c.translate(540, 260); c.scale(-1, 1);
+  c.drawImage(imgs.gengar, 0, 0, 140, 140);
+  c.restore();
+
+  c.textAlign = 'center'; c.textBaseline = 'middle';
+  c.save();
+  c.shadowColor = '#FFD600'; c.shadowBlur = 40;
+  c.fillStyle = '#FFD600'; c.font = 'bold 80px "Arial Black", Impact, sans-serif';
+  c.fillText('VS', 400, 280);
+  c.shadowBlur = 0;
+  c.strokeStyle = 'rgba(255,0,0,0.6)'; c.lineWidth = 3;
+  c.strokeText('VS', 400, 280);
+  c.restore();
+
+  for (let i = 0; i < 20; i++) {
+    const a = i * Math.PI * 2 / 20;
+    const len = 50 + Math.random() * 40;
+    c.strokeStyle = `rgba(255,${200 + Math.floor(Math.random() * 55)},0,${0.15 + Math.random() * 0.2})`;
+    c.lineWidth = 1.5; c.beginPath();
+    c.moveTo(400 + Math.cos(a) * 45, 280 + Math.sin(a) * 25);
+    c.lineTo(400 + Math.cos(a) * len * 1.8, 280 + Math.sin(a) * len * 0.7);
+    c.stroke();
+  }
+
+  c.shadowColor = 'rgba(0,0,0,0.8)'; c.shadowBlur = 10; c.shadowOffsetY = 3;
+  c.fillStyle = '#FFF'; c.font = 'bold 54px "Arial Black", Impact, sans-serif';
+  c.textAlign = 'center';
+  c.fillText('POKEMON', 400, 55);
+  c.fillStyle = '#FFD600'; c.font = 'bold 46px "Arial Black", Impact, sans-serif';
+  c.fillText('FIGHTER', 400, 105);
+  c.shadowBlur = 0; c.shadowOffsetY = 0;
+
+  c.fillStyle = 'rgba(0,0,0,0.55)'; c.fillRect(250, 122, 300, 26);
+  c.fillStyle = '#ddd'; c.font = '14px monospace';
+  c.fillText('BATTLES & STRATEGY', 400, 137);
+
+  c.fillStyle = 'rgba(0,0,0,0.65)'; c.fillRect(0, H - 32, W, 32);
+  c.fillStyle = '#bbb'; c.font = '12px monospace';
+  c.fillText('STORY MODE  |  100+ EQUIPMENT  |  TOURNAMENTS  |  SURVIVAL  |  BOSS RUSH', 400, H - 12);
+
+  drawMiniPokeball(c, 35, 42, 14);
+  drawMiniPokeball(c, W - 35, 42, 14);
+
+  for (let i = 0; i < 40; i++) {
+    const x = Math.random() * W, y = Math.random() * (H - 50);
+    const s = 1 + Math.random() * 2;
+    c.fillStyle = `rgba(255,${200 + Math.floor(Math.random() * 55)},${Math.floor(Math.random() * 120)},${0.2 + Math.random() * 0.5})`;
+    c.fillRect(x, y, s, s);
+  }
+}
+
+document.getElementById('dl-icon').onclick = () => {
+  const a = document.createElement('a');
+  a.download = 'icon-512x512.png';
+  a.href = document.getElementById('icon').toDataURL('image/png');
+  a.click();
+};
+document.getElementById('dl-cover').onclick = () => {
+  const a = document.createElement('a');
+  a.download = 'cover-800x470.png';
+  a.href = document.getElementById('cover').toDataURL('image/png');
+  a.click();
+};
+</script>
+</body>
+</html>

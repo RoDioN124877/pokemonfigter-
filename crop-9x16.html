@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>Crop Screenshots to 9:16 (1080x1920)</title>
+<style>
+  body { background: #1a1a2e; color: #eee; font-family: sans-serif; display: flex; flex-direction: column; align-items: center; gap: 32px; padding: 32px; }
+  .block { text-align: center; }
+  canvas { border: 2px solid #333; border-radius: 8px; max-width: 100%; height: auto; }
+  button { background: #FFD600; color: #111; border: none; padding: 10px 24px; border-radius: 6px; font-size: 16px; font-weight: bold; cursor: pointer; margin-top: 8px; }
+  button:hover { background: #FFC107; }
+  h2 { margin: 0 0 8px; font-size: 18px; }
+  #drop { border: 3px dashed #555; border-radius: 12px; padding: 40px 60px; margin-bottom: 20px; font-size: 18px; color: #888; cursor: pointer; transition: border-color 0.2s; }
+  #drop:hover, #drop.over { border-color: #FFD600; color: #FFD600; }
+  #drop input { display: none; }
+  #results { display: flex; flex-direction: column; gap: 32px; width: 100%; max-width: 600px; }
+</style>
+</head>
+<body>
+  <h1>Crop to 9:16 (1080x1920)</h1>
+  <div id="drop" onclick="this.querySelector('input').click()">
+    Drop images here or click to select
+    <input type="file" multiple accept="image/*" onchange="handleFiles(this.files)">
+  </div>
+  <div id="results"></div>
+
+<script>
+const TARGET_W = 1080;
+const TARGET_H = 1920;
+const TARGET_RATIO = TARGET_W / TARGET_H;
+
+const drop = document.getElementById('drop');
+drop.addEventListener('dragover', e => { e.preventDefault(); drop.classList.add('over'); });
+drop.addEventListener('dragleave', () => drop.classList.remove('over'));
+drop.addEventListener('drop', e => { e.preventDefault(); drop.classList.remove('over'); handleFiles(e.dataTransfer.files); });
+
+function handleFiles(files) {
+  for (const file of files) {
+    if (!file.type.startsWith('image/')) continue;
+    const reader = new FileReader();
+    reader.onload = e => processImage(e.target.result, file.name);
+    reader.readAsDataURL(file);
+  }
+}
+
+function processImage(dataUrl, filename) {
+  const img = new Image();
+  img.onload = () => {
+    const srcW = img.naturalWidth;
+    const srcH = img.naturalHeight;
+    const srcRatio = srcW / srcH;
+
+    let cropX = 0, cropY = 0, cropW = srcW, cropH = srcH;
+
+    if (srcRatio > TARGET_RATIO) {
+      cropW = Math.round(srcH * TARGET_RATIO);
+      cropX = Math.round((srcW - cropW) / 2);
+    } else {
+      cropH = Math.round(srcW / TARGET_RATIO);
+      cropY = Math.round((srcH - cropH) / 2);
+    }
+
+    const canvas = document.createElement('canvas');
+    canvas.width = TARGET_W;
+    canvas.height = TARGET_H;
+    const ctx = canvas.getContext('2d');
+    ctx.drawImage(img, cropX, cropY, cropW, cropH, 0, 0, TARGET_W, TARGET_H);
+
+    const block = document.createElement('div');
+    block.className = 'block';
+
+    const title = document.createElement('h2');
+    const baseName = filename.replace(/\.[^.]+$/, '');
+    title.textContent = baseName + ' (1080x1920)';
+    block.appendChild(title);
+
+    const info = document.createElement('div');
+    info.style.cssText = 'font-size:13px;color:#888;margin-bottom:8px;';
+    info.textContent = `Original: ${srcW}x${srcH} | Crop: ${cropW}x${cropH} from (${cropX},${cropY}) | Scale to 1080x1920`;
+    block.appendChild(info);
+
+    canvas.style.maxWidth = '100%';
+    canvas.style.height = 'auto';
+    canvas.style.border = '2px solid #333';
+    canvas.style.borderRadius = '8px';
+    block.appendChild(canvas);
+
+    const btn = document.createElement('button');
+    btn.textContent = 'Download PNG';
+    btn.onclick = () => {
+      const a = document.createElement('a');
+      a.download = baseName + '_1080x1920.png';
+      a.href = canvas.toDataURL('image/png');
+      a.click();
+    };
+    block.appendChild(document.createElement('br'));
+    block.appendChild(btn);
+
+    document.getElementById('results').appendChild(block);
+  };
+  img.src = dataUrl;
+}
+</script>
+</body>
+</html>
